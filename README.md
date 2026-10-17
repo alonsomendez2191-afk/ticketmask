@@ -12,6 +12,7 @@ customer data ever leaving.
 |---|---|---|
 | Presidio masking app | `src/ticketmask/`, `app/` | Finds and masks PII in ticket exports with [Microsoft Presidio](https://github.com/microsoft/presidio), plus ticket-specific recognizers and deny-lists. Keeps an encrypted vault per ticket for audits. Has a CLI and a Streamlit UI. |
 | Generic support ontology | `support-ontology/` | 17 classes (Account, Contact, Ticket, Product, SeverityLevel…) that every masking entity type binds to. The products, CRMs and severity wording are templates to replace with your own. Browse it in `support-ontology/Navigator/index.html`. |
+| Local model prompt | `prompts/local_model_masking.md` | System prompt for a second pass by a local model. It masks what the first pass missed, then returns an HTML report with the changes, the fully masked tickets and draft knowledge base articles. |
 | Sample tickets | `samples/` | 20 synthetic tickets with ground-truth PII labels, matching deny-lists, and CSV and JSON exports for testing. |
 
 Masking runs entirely on your machine. Only the masked output is meant to go to
@@ -60,6 +61,27 @@ The contacts and sites lists are incomplete on purpose, as a real CRM export
 would be. Some tickets also contain things no recognizer catches yet: a street
 address, an unlabelled API key, and a Windows username in a file path. Those
 leaks show what to tune next.
+
+## Second pass with a local model
+
+Presidio misses some things, such as a first name on its own, a username in a
+file path or an unlabelled API key. `prompts/local_model_masking.md` asks a
+local model to find and mask those, list each change, and write knowledge base
+articles from the result. It returns one self-contained HTML file. A JSON block
+inside it repeats the changes and masked text so code can check them.
+
+Use the file as the system prompt and send one ticket from
+`data/out/masked.jsonl` per request as the user message. With Ollama, call
+`/api/chat` with `"think": false` and `num_ctx` of at least 16384 (the default
+of 4096 silently cuts long tickets).
+
+Treat the output as a draft that code must check before anyone uses it. In tests
+on the sample tickets with `gemma4:e4b-it-qat`, a 4B model, the model caught a
+lone first name, a name in a data row and a username in a file path. It missed
+a street address and an API key, and sometimes renumbered placeholders the
+first pass had already set. Before using a report, confirm that every
+placeholder from the input survived unchanged and that no original value
+appears in it. A larger model will do better.
 
 ## Browse the ontology
 

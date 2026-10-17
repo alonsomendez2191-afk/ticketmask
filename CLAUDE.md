@@ -16,6 +16,7 @@ today.
 | Custom ticket recognizers | **Working prototype.** 7 pattern recognizers + 11 deny-lists. Needs tuning on real data. |
 | Ontology binding | **Working.** Entity types are `sup:` class names; drift against the export is detected. |
 | Measurement harness | **Working.** `scripts/measure.py`, gated on leak rate. |
+| Local model second pass | **Prompt only.** `prompts/local_model_masking.md`. On gemma4:e4b it caught 3 of 5 sample leaks and sometimes renumbered existing placeholders. No checker yet. |
 | Sample dataset | **Working.** `samples/`: 20 labelled synthetic tickets plus deny-lists. |
 | Bundled ontology | **Generic.** `support-ontology/` ships template products, CRMs and severity wording. |
 
@@ -46,6 +47,7 @@ Detect → arbitrate → link → mask → *(model)* → unmask.
 | `pipeline.py` | Orchestration + the mask/unmask round trip |
 | `corpus.py` | Loads `[[TYPE|value]]`-annotated ground truth |
 | `ontology.py` | Binds every entity type to a `sup:` class; detects drift against the export |
+| `prompts/local_model_masking.md` | Local model system prompt: second-pass masking, HTML report, draft articles |
 | `support-ontology/` | Bundled generic ontology: markdown source, exports, validation scripts |
 | `scripts/export_ontology_sql.py` | Generates `sql/support_ontology_er.sql`: ER model, ontology catalog, masking actions, constraint views |
 
