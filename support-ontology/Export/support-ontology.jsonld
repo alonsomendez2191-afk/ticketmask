@@ -1,0 +1,7170 @@
+{
+  "@context": {
+    "sup": "https://ontology.local/support#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "dcterms": "http://purl.org/dc/terms/"
+  },
+  "@graph": [
+    {
+      "@id": "https://ontology.local/support",
+      "@type": "owl:Ontology",
+      "owl:versionInfo": "0.2.0",
+      "dcterms:title": "Support Organization Ontology",
+      "dcterms:modified": {
+        "@value": "2026-10-16",
+        "@type": "xsd:date"
+      },
+      "rdfs:comment": "Machine-readable model of the support organization: the concepts, relationships, rules and vocabulary AI agents may use when reasoning about accounts, tickets, documentation and escalations. Generated from the markdown source of truth in Ontology/."
+    },
+    {
+      "@id": "sup:Alias",
+      "@type": "owl:Class",
+      "rdfs:label": "Alias",
+      "rdfs:comment": "Metamodel class introduced by the RDF export to carry information the markdown source records in prose or tables."
+    },
+    {
+      "@id": "sup:ProvenanceEntry",
+      "@type": "owl:Class",
+      "rdfs:label": "ProvenanceEntry",
+      "rdfs:comment": "Metamodel class introduced by the RDF export to carry information the markdown source records in prose or tables."
+    },
+    {
+      "@id": "sup:Constraint",
+      "@type": "owl:Class",
+      "rdfs:label": "Constraint",
+      "rdfs:comment": "Metamodel class introduced by the RDF export to carry information the markdown source records in prose or tables."
+    },
+    {
+      "@id": "sup:CompetencyQuestion",
+      "@type": "owl:Class",
+      "rdfs:label": "CompetencyQuestion",
+      "rdfs:comment": "Metamodel class introduced by the RDF export to carry information the markdown source records in prose or tables."
+    },
+    {
+      "@id": "sup:OpenQuestion",
+      "@type": "owl:Class",
+      "rdfs:label": "OpenQuestion",
+      "rdfs:comment": "Metamodel class introduced by the RDF export to carry information the markdown source records in prose or tables."
+    },
+    {
+      "@id": "sup:EquivalenceDeclaration",
+      "@type": "owl:Class",
+      "rdfs:label": "EquivalenceDeclaration",
+      "rdfs:comment": "Metamodel class introduced by the RDF export to carry information the markdown source records in prose or tables."
+    },
+    {
+      "@id": "sup:domainType",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "domainType",
+      "rdfs:comment": "Navigation grouping: Customer, Product, Support, Engineering, Knowledge."
+    },
+    {
+      "@id": "sup:status",
+      "@type": [
+        "owl:AnnotationProperty",
+        "owl:DatatypeProperty"
+      ],
+      "rdfs:label": "status",
+      "rdfs:comment": "Canonical, Proposed or Deprecated.",
+      "rdfs:domain": {
+        "@id": "sup:Ticket"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "sup:permittedValue": [
+        "New",
+        "Open",
+        "Pending",
+        "Escalated",
+        "Resolved",
+        "Closed"
+      ],
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "sup:identityRule",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "identityRule",
+      "rdfs:comment": "How two records are decided to be the same instance."
+    },
+    {
+      "@id": "sup:sourceFile",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "sourceFile",
+      "rdfs:comment": "Markdown file this term was generated from."
+    },
+    {
+      "@id": "sup:cardinalityNotation",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "cardinalityNotation",
+      "rdfs:comment": "The min..max notation as written in the source."
+    },
+    {
+      "@id": "sup:isRequired",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "isRequired",
+      "rdfs:comment": "Whether the datatype property is mandatory."
+    },
+    {
+      "@id": "sup:permittedValue",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "permittedValue",
+      "rdfs:comment": "One allowed value of an enumerated datatype property."
+    },
+    {
+      "@id": "sup:aliasTerm",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "aliasTerm",
+      "rdfs:comment": "A term used for this concept in some system or context."
+    },
+    {
+      "@id": "sup:aliasContext",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "aliasContext",
+      "rdfs:comment": "The system, product or setting in which the alias is used."
+    },
+    {
+      "@id": "sup:hasAlias",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "hasAlias",
+      "rdfs:comment": "Links a class to an attributed Alias node."
+    },
+    {
+      "@id": "sup:sourceSystem",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "sourceSystem",
+      "rdfs:comment": "System of record named in a provenance entry."
+    },
+    {
+      "@id": "sup:supplies",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "supplies",
+      "rdfs:comment": "What the source system supplies."
+    },
+    {
+      "@id": "sup:authoritativeFor",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "authoritativeFor",
+      "rdfs:comment": "What the source system is authoritative for."
+    },
+    {
+      "@id": "sup:hasProvenance",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "hasProvenance",
+      "rdfs:comment": "Links a class to a ProvenanceEntry node."
+    },
+    {
+      "@id": "sup:constraintId",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "constraintId",
+      "rdfs:comment": "Stable identifier, e.g. C-01."
+    },
+    {
+      "@id": "sup:enforcementLevel",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "enforcementLevel",
+      "rdfs:comment": "Hard, Soft, Advisory or Retired."
+    },
+    {
+      "@id": "sup:constraintText",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "constraintText",
+      "rdfs:comment": "The constraint as written."
+    },
+    {
+      "@id": "sup:constraintNote",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "constraintNote",
+      "rdfs:comment": "What the constraint catches, or why it was retired."
+    },
+    {
+      "@id": "sup:governedBy",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "governedBy",
+      "rdfs:comment": "Links a class to a Constraint."
+    },
+    {
+      "@id": "sup:questionId",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "questionId",
+      "rdfs:comment": "Stable identifier, e.g. CQ-01 or OQ-01."
+    },
+    {
+      "@id": "sup:questionText",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "questionText",
+      "rdfs:comment": "The question as written."
+    },
+    {
+      "@id": "sup:questionStatus",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "questionStatus",
+      "rdfs:comment": "Answerable, Conditional, Retired, Blocking, Open or Resolved."
+    },
+    {
+      "@id": "sup:questionNote",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "questionNote",
+      "rdfs:comment": "Why a question was retired."
+    },
+    {
+      "@id": "sup:answersQuestion",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "answersQuestion",
+      "rdfs:comment": "Links a class to a CompetencyQuestion it participates in."
+    },
+    {
+      "@id": "sup:raisesQuestion",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "raisesQuestion",
+      "rdfs:comment": "Links a class to an unresolved OpenQuestion."
+    },
+    {
+      "@id": "sup:equivalenceId",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "equivalenceId",
+      "rdfs:comment": "Stable identifier, e.g. EQ-01."
+    },
+    {
+      "@id": "sup:equivalenceStatus",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "equivalenceStatus",
+      "rdfs:comment": "Confirmation state of the equivalence declaration."
+    },
+    {
+      "@id": "sup:variesBy",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "variesBy",
+      "rdfs:comment": "What the naming varies by: CRM, Product, or speaker."
+    },
+    {
+      "@id": "sup:anchorProperty",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "anchorProperty",
+      "rdfs:comment": "The property that records which term is used where."
+    },
+    {
+      "@id": "sup:equivalentLabel",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "equivalentLabel",
+      "rdfs:comment": "A label asserted to denote the same thing as the canonical term."
+    },
+    {
+      "@id": "sup:declaresEquivalence",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "declaresEquivalence",
+      "rdfs:comment": "Links a class to an EquivalenceDeclaration about it."
+    },
+    {
+      "@id": "sup:Account",
+      "@type": "owl:Class",
+      "rdfs:label": "Account",
+      "skos:prefLabel": "Account",
+      "skos:definition": "A commercial customer organization that holds one or more licenses to our products and is entitled to receive support. The Account is the unit that entitlement, licensing, regional assignment and commercial ownership all hang off. An Account is an organization, never an individual person — the people at an account are modelled as `sup:Contact`.",
+      "rdfs:comment": "A commercial customer organization that holds one or more licenses to our products and is entitled to receive support. The Account is the unit that entitlement, licensing, regional assignment and commercial ownership all hang off. An Account is an organization, never an individual person — the people at an account are modelled as `sup:Contact`.",
+      "sup:domainType": "Customer",
+      "sup:status": "Canonical",
+      "sup:identityRule": "The CRM account ID is authoritative. Where an organization exists as multiple account records across brand-specific CRM orgs, they are the same `sup:Account` only if they share a resolved parent organization ID. See `OQ-03` — account de-duplication across brand orgs is unresolved.",
+      "sup:sourceFile": "Ontology/Entities/Account.md",
+      "skos:altLabel": [
+        "Account",
+        "Customer",
+        "Organization",
+        "Org"
+      ],
+      "sup:hasAlias": [
+        {
+          "@id": "_:b1"
+        },
+        {
+          "@id": "_:b2"
+        },
+        {
+          "@id": "_:b3"
+        }
+      ],
+      "sup:hasProvenance": [
+        {
+          "@id": "_:b4"
+        },
+        {
+          "@id": "_:b5"
+        }
+      ],
+      "sup:governedBy": [
+        {
+          "@id": "sup:C-01"
+        },
+        {
+          "@id": "sup:C-02"
+        },
+        {
+          "@id": "sup:C-07"
+        },
+        {
+          "@id": "sup:C-08"
+        },
+        {
+          "@id": "sup:C-09"
+        }
+      ],
+      "sup:answersQuestion": [
+        {
+          "@id": "sup:CQ-01"
+        },
+        {
+          "@id": "sup:CQ-02"
+        },
+        {
+          "@id": "sup:CQ-03"
+        },
+        {
+          "@id": "sup:CQ-05"
+        },
+        {
+          "@id": "sup:CQ-11"
+        },
+        {
+          "@id": "sup:CQ-14"
+        },
+        {
+          "@id": "sup:CQ-19"
+        },
+        {
+          "@id": "sup:CQ-22"
+        },
+        {
+          "@id": "sup:CQ-29"
+        }
+      ],
+      "sup:raisesQuestion": [
+        {
+          "@id": "sup:OQ-03"
+        },
+        {
+          "@id": "sup:OQ-04"
+        },
+        {
+          "@id": "sup:OQ-42"
+        }
+      ],
+      "owl:disjointWith": {
+        "@id": "sup:Contact"
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:b96"
+        },
+        {
+          "@id": "_:b97"
+        },
+        {
+          "@id": "_:b98"
+        },
+        {
+          "@id": "_:b104"
+        },
+        {
+          "@id": "_:b112"
+        },
+        {
+          "@id": "_:b113"
+        },
+        {
+          "@id": "_:b114"
+        },
+        {
+          "@id": "_:b115"
+        }
+      ]
+    },
+    {
+      "@id": "_:b1",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Account",
+      "sup:aliasContext": "Salesforce"
+    },
+    {
+      "@id": "_:b2",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Customer",
+      "sup:aliasContext": "Informal / internal speech"
+    },
+    {
+      "@id": "_:b3",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Organization, Org",
+      "sup:aliasContext": "Some reporting"
+    },
+    {
+      "@id": "_:b4",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "CRM",
+      "sup:supplies": "Account record, region, ownership",
+      "sup:authoritativeFor": "accountId, accountName, isStrategic"
+    },
+    {
+      "@id": "_:b5",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "Licensing system",
+      "sup:supplies": "Active license set",
+      "sup:authoritativeFor": "accountStatus (derived)"
+    },
+    {
+      "@id": "sup:Contact",
+      "@type": "owl:Class",
+      "rdfs:label": "Contact",
+      "skos:prefLabel": "Contact",
+      "skos:definition": "An individual person at a customer account who is authorised to raise support tickets and use self-service tools. A Contact is a person in their capacity as a customer representative. Internal staff are modelled as `sup:SupportAgent`, `sup:SalesRepresentative` or `sup:CustomerSuccessManager`.",
+      "rdfs:comment": "An individual person at a customer account who is authorised to raise support tickets and use self-service tools. A Contact is a person in their capacity as a customer representative. Internal staff are modelled as `sup:SupportAgent`, `sup:SalesRepresentative` or `sup:CustomerSuccessManager`.",
+      "sup:domainType": "Customer",
+      "sup:status": "Canonical",
+      "sup:identityRule": "CRM contact ID is authoritative.",
+      "sup:sourceFile": "Ontology/Entities/Contact.md",
+      "skos:altLabel": [
+        "Contact",
+        "Requester",
+        "Reporter",
+        "Submitter"
+      ],
+      "sup:hasAlias": [
+        {
+          "@id": "_:b6"
+        },
+        {
+          "@id": "_:b7"
+        }
+      ],
+      "sup:hasProvenance": {
+        "@id": "_:b8"
+      },
+      "sup:governedBy": [
+        {
+          "@id": "sup:C-15"
+        },
+        {
+          "@id": "sup:C-16"
+        },
+        {
+          "@id": "sup:C-17"
+        }
+      ],
+      "sup:answersQuestion": {
+        "@id": "sup:CQ-06"
+      },
+      "sup:raisesQuestion": [
+        {
+          "@id": "sup:OQ-01"
+        },
+        {
+          "@id": "sup:OQ-49"
+        }
+      ],
+      "owl:disjointWith": {
+        "@id": "sup:Account"
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:b111"
+        },
+        {
+          "@id": "_:b116"
+        },
+        {
+          "@id": "_:b117"
+        },
+        {
+          "@id": "_:b118"
+        }
+      ]
+    },
+    {
+      "@id": "_:b6",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Contact",
+      "sup:aliasContext": "Salesforce"
+    },
+    {
+      "@id": "_:b7",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Requester, Reporter, Submitter",
+      "sup:aliasContext": "Ticket forms"
+    },
+    {
+      "@id": "_:b8",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "CRM",
+      "sup:supplies": "Contact record, authorisation flag",
+      "sup:authoritativeFor": "All contact facts"
+    },
+    {
+      "@id": "sup:CRM",
+      "@type": "owl:Class",
+      "rdfs:label": "CRM",
+      "skos:prefLabel": "CRM",
+      "skos:definition": "A customer relationship management system that records tickets. Each distinct CRM instance is a distinct instance of this class, because each carries its own ticket numbering, its own user records, and — critically — its own vocabulary.",
+      "rdfs:comment": "A customer relationship management system that records tickets. Each distinct CRM instance is a distinct instance of this class, because each carries its own ticket numbering, its own user records, and — critically — its own vocabulary.",
+      "sup:domainType": "Support",
+      "sup:status": "Canonical",
+      "sup:identityRule": "Natural key: the system code (e.g. `SF_EMEA`, `SF_AMER`). Each org is a separate instance even when several orgs run on the same platform, because the ID spaces and the vocabulary do not carry across.",
+      "sup:sourceFile": "Ontology/Entities/CRM.md",
+      "skos:altLabel": [
+        "Org",
+        "Instance",
+        "Tenant",
+        "Source",
+        "System of record",
+        "Upstream",
+        "Salesforce",
+        "the system"
+      ],
+      "sup:hasAlias": [
+        {
+          "@id": "_:b9"
+        },
+        {
+          "@id": "_:b10"
+        },
+        {
+          "@id": "_:b11"
+        }
+      ],
+      "sup:hasProvenance": [
+        {
+          "@id": "_:b12"
+        },
+        {
+          "@id": "_:b13"
+        },
+        {
+          "@id": "_:b14"
+        }
+      ],
+      "sup:governedBy": [
+        {
+          "@id": "sup:C-48"
+        },
+        {
+          "@id": "sup:C-49"
+        },
+        {
+          "@id": "sup:C-50"
+        }
+      ],
+      "sup:answersQuestion": [
+        {
+          "@id": "sup:CQ-07"
+        },
+        {
+          "@id": "sup:CQ-18"
+        }
+      ],
+      "sup:raisesQuestion": [
+        {
+          "@id": "sup:OQ-38"
+        },
+        {
+          "@id": "sup:OQ-50"
+        },
+        {
+          "@id": "sup:OQ-39"
+        },
+        {
+          "@id": "sup:OQ-18"
+        }
+      ],
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:b119"
+        },
+        {
+          "@id": "_:b120"
+        },
+        {
+          "@id": "_:b121"
+        },
+        {
+          "@id": "_:b122"
+        }
+      ]
+    },
+    {
+      "@id": "_:b9",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Org, Instance, Tenant",
+      "sup:aliasContext": "CRM administration"
+    },
+    {
+      "@id": "_:b10",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Source, System of record, Upstream",
+      "sup:aliasContext": "Data engineering"
+    },
+    {
+      "@id": "_:b11",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Salesforce, \"the system\"",
+      "sup:aliasContext": "Everyday use"
+    },
+    {
+      "@id": "_:b12",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "Integration inventory",
+      "sup:supplies": "The list of CRM instances",
+      "sup:authoritativeFor": "System set"
+    },
+    {
+      "@id": "_:b13",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "CRM administration",
+      "sup:supplies": "Org configuration and field labels",
+      "sup:authoritativeFor": "ticketTermUsed"
+    },
+    {
+      "@id": "_:b14",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "This ontology",
+      "sup:supplies": "Trust ranking",
+      "sup:authoritativeFor": "isAuthoritative"
+    },
+    {
+      "@id": "sup:CustomerSuccessManager",
+      "@type": "owl:Class",
+      "rdfs:label": "CustomerSuccessManager",
+      "skos:prefLabel": "CustomerSuccessManager",
+      "skos:definition": "An internal individual assigned to accounts considered valuable, with responsibility for adoption, retention and relationship health. Unlike the sales representative, CSM assignment is conditional — most accounts do not have one.",
+      "rdfs:comment": "An internal individual assigned to accounts considered valuable, with responsibility for adoption, retention and relationship health. Unlike the sales representative, CSM assignment is conditional — most accounts do not have one.",
+      "sup:domainType": "Customer",
+      "sup:status": "Canonical",
+      "sup:identityRule": "The CRM user ID is authoritative.",
+      "sup:sourceFile": "Ontology/Entities/CustomerSuccessManager.md",
+      "skos:altLabel": [
+        "CSM",
+        "Customer Success Manager",
+        "Success owner",
+        "TAM",
+        "Technical account manager"
+      ],
+      "sup:hasAlias": [
+        {
+          "@id": "_:b15"
+        },
+        {
+          "@id": "_:b16"
+        },
+        {
+          "@id": "_:b17"
+        }
+      ],
+      "sup:hasProvenance": [
+        {
+          "@id": "_:b18"
+        },
+        {
+          "@id": "_:b19"
+        }
+      ],
+      "sup:governedBy": [
+        {
+          "@id": "sup:C-08"
+        },
+        {
+          "@id": "sup:C-47"
+        }
+      ],
+      "sup:answersQuestion": [
+        {
+          "@id": "sup:CQ-05"
+        },
+        {
+          "@id": "sup:CQ-14"
+        },
+        {
+          "@id": "sup:CQ-22"
+        }
+      ],
+      "sup:raisesQuestion": [
+        {
+          "@id": "sup:OQ-36"
+        },
+        {
+          "@id": "sup:OQ-37"
+        }
+      ],
+      "owl:disjointWith": [
+        {
+          "@id": "sup:SupportAgent"
+        },
+        {
+          "@id": "sup:SalesRepresentative"
+        }
+      ],
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:b123"
+        },
+        {
+          "@id": "_:b124"
+        }
+      ]
+    },
+    {
+      "@id": "_:b15",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "CSM",
+      "sup:aliasContext": "Everyday use"
+    },
+    {
+      "@id": "_:b16",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Customer Success Manager, Success owner",
+      "sup:aliasContext": "Salesforce"
+    },
+    {
+      "@id": "_:b17",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "TAM, Technical account manager (may be a distinct role — OQ-36)",
+      "sup:aliasContext": "Some teams"
+    },
+    {
+      "@id": "_:b18",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "CRM",
+      "sup:supplies": "CSM field on the account",
+      "sup:authoritativeFor": "supports"
+    },
+    {
+      "@id": "_:b19",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "Customer success operations",
+      "sup:supplies": "Assignment criteria and book of business",
+      "sup:authoritativeFor": "Coverage rules"
+    },
+    {
+      "@id": "sup:Documentation",
+      "@type": "owl:Class",
+      "rdfs:label": "Documentation",
+      "skos:prefLabel": "Documentation",
+      "skos:definition": "Published product documentation and knowledge base content that support agents consult to resolve tickets. One instance is one published unit — an article or page — identified by its URL.",
+      "rdfs:comment": "Published product documentation and knowledge base content that support agents consult to resolve tickets. One instance is one published unit — an article or page — identified by its URL.",
+      "sup:domainType": "Knowledge",
+      "sup:status": "Canonical",
+      "sup:identityRule": "The published URL is authoritative. Where content exists at several URLs (localised or mirrored), the canonical URL is the identity and the others are recorded as aliases.",
+      "sup:sourceFile": "Ontology/Entities/Documentation.md",
+      "skos:altLabel": [
+        "Article",
+        "KB article",
+        "Doc",
+        "Page",
+        "The docs",
+        "the wiki",
+        "Content",
+        "Topic"
+      ],
+      "sup:hasAlias": [
+        {
+          "@id": "_:b20"
+        },
+        {
+          "@id": "_:b21"
+        },
+        {
+          "@id": "_:b22"
+        }
+      ],
+      "sup:hasProvenance": [
+        {
+          "@id": "_:b23"
+        },
+        {
+          "@id": "_:b24"
+        },
+        {
+          "@id": "_:b25"
+        }
+      ],
+      "sup:governedBy": [
+        {
+          "@id": "sup:C-23"
+        },
+        {
+          "@id": "sup:C-40"
+        },
+        {
+          "@id": "sup:C-55"
+        }
+      ],
+      "sup:answersQuestion": [
+        {
+          "@id": "sup:CQ-12"
+        },
+        {
+          "@id": "sup:CQ-16"
+        },
+        {
+          "@id": "sup:CQ-24"
+        },
+        {
+          "@id": "sup:CQ-26"
+        }
+      ],
+      "sup:raisesQuestion": [
+        {
+          "@id": "sup:OQ-29"
+        },
+        {
+          "@id": "sup:OQ-30"
+        },
+        {
+          "@id": "sup:OQ-45"
+        },
+        {
+          "@id": "sup:OQ-46"
+        }
+      ],
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:b93"
+        },
+        {
+          "@id": "_:b125"
+        },
+        {
+          "@id": "_:b126"
+        },
+        {
+          "@id": "_:b127"
+        }
+      ]
+    },
+    {
+      "@id": "_:b20",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Article, KB article, Doc, Page",
+      "sup:aliasContext": "KB tooling"
+    },
+    {
+      "@id": "_:b21",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "The docs, the wiki",
+      "sup:aliasContext": "Agent conversation"
+    },
+    {
+      "@id": "_:b22",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Content, Topic",
+      "sup:aliasContext": "Content team"
+    },
+    {
+      "@id": "_:b23",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "KB / documentation platform",
+      "sup:supplies": "The article and its content",
+      "sup:authoritativeFor": "Everything"
+    },
+    {
+      "@id": "_:b24",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "KB source inventories (sources.json per product)",
+      "sup:supplies": "Which articles are tracked",
+      "sup:authoritativeFor": "Coverage set"
+    },
+    {
+      "@id": "_:b25",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "CRM",
+      "sup:supplies": "Articles cited on resolved cases",
+      "sup:authoritativeFor": "resolves"
+    },
+    {
+      "@id": "sup:Escalation",
+      "@type": "owl:Class",
+      "rdfs:label": "Escalation",
+      "skos:prefLabel": "Escalation",
+      "skos:definition": "The act of a support agent referring a ticket to development because it has been identified as a defect or as a request for new functionality. The Escalation produces a Jira issue and is the only legitimate way a Jira ID becomes associated with a ticket.",
+      "rdfs:comment": "The act of a support agent referring a ticket to development because it has been identified as a defect or as a request for new functionality. The Escalation produces a Jira issue and is the only legitimate way a Jira ID becomes associated with a ticket.",
+      "sup:domainType": "Support",
+      "sup:status": "Canonical",
+      "sup:identityRule": "Surrogate: generated UUID. There is no natural key — the same ticket can be escalated more than once, and the same Jira issue can receive escalations from many tickets.",
+      "sup:sourceFile": "Ontology/Entities/Escalation.md",
+      "skos:altLabel": [
+        "Bug report",
+        "Dev handoff",
+        "raising a Jira",
+        "Escalation flag",
+        "Escalated case"
+      ],
+      "sup:hasAlias": [
+        {
+          "@id": "_:b26"
+        },
+        {
+          "@id": "_:b27"
+        }
+      ],
+      "sup:hasProvenance": [
+        {
+          "@id": "_:b28"
+        },
+        {
+          "@id": "_:b29"
+        }
+      ],
+      "sup:governedBy": [
+        {
+          "@id": "sup:C-05"
+        },
+        {
+          "@id": "sup:C-06"
+        },
+        {
+          "@id": "sup:C-27"
+        },
+        {
+          "@id": "sup:C-28"
+        },
+        {
+          "@id": "sup:C-29"
+        }
+      ],
+      "sup:answersQuestion": [
+        {
+          "@id": "sup:CQ-11"
+        },
+        {
+          "@id": "sup:CQ-15"
+        },
+        {
+          "@id": "sup:CQ-17"
+        },
+        {
+          "@id": "sup:CQ-18"
+        },
+        {
+          "@id": "sup:CQ-19"
+        },
+        {
+          "@id": "sup:CQ-23"
+        },
+        {
+          "@id": "sup:CQ-27"
+        }
+      ],
+      "sup:raisesQuestion": [
+        {
+          "@id": "sup:OQ-21"
+        },
+        {
+          "@id": "sup:OQ-22"
+        }
+      ],
+      "owl:disjointWith": [
+        {
+          "@id": "sup:Ticket"
+        },
+        {
+          "@id": "sup:JiraIssue"
+        }
+      ],
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:b94"
+        },
+        {
+          "@id": "_:b105"
+        },
+        {
+          "@id": "_:b106"
+        },
+        {
+          "@id": "_:b128"
+        },
+        {
+          "@id": "_:b129"
+        },
+        {
+          "@id": "_:b130"
+        },
+        {
+          "@id": "_:b131"
+        }
+      ]
+    },
+    {
+      "@id": "_:b26",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Bug report, Dev handoff, \"raising a Jira\"",
+      "sup:aliasContext": "Agent conversation"
+    },
+    {
+      "@id": "_:b27",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Escalation flag, Escalated case",
+      "sup:aliasContext": "CRM"
+    },
+    {
+      "@id": "_:b28",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "CRM",
+      "sup:supplies": "Escalation record on the case, agent identity",
+      "sup:authoritativeFor": "escalatedAt, escalatedBy, justification"
+    },
+    {
+      "@id": "_:b29",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "Jira",
+      "sup:supplies": "The resulting issue key, acceptance",
+      "sup:authoritativeFor": "producedIssue, wasAccepted"
+    },
+    {
+      "@id": "sup:JiraIssue",
+      "@type": "owl:Class",
+      "rdfs:label": "JiraIssue",
+      "skos:prefLabel": "JiraIssue",
+      "skos:definition": "A unit of engineering work tracked in Jira, created as the result of a support escalation, representing either a defect to fix or a capability to build. Its key is the identifier that gets associated back to the originating ticket.",
+      "rdfs:comment": "A unit of engineering work tracked in Jira, created as the result of a support escalation, representing either a defect to fix or a capability to build. Its key is the identifier that gets associated back to the originating ticket.",
+      "sup:domainType": "Engineering",
+      "sup:status": "Canonical",
+      "sup:identityRule": "The Jira issue key (e.g. `PROJ-1234`) is authoritative and globally unique.",
+      "sup:sourceFile": "Ontology/Entities/JiraIssue.md",
+      "skos:altLabel": [
+        "Jira",
+        "Jira ID",
+        "ticket",
+        "Issue",
+        "Story",
+        "Bug",
+        "Defect",
+        "Jira reference",
+        "Dev ID"
+      ],
+      "sup:hasAlias": [
+        {
+          "@id": "_:b30"
+        },
+        {
+          "@id": "_:b31"
+        },
+        {
+          "@id": "_:b32"
+        }
+      ],
+      "sup:hasProvenance": [
+        {
+          "@id": "_:b33"
+        },
+        {
+          "@id": "_:b34"
+        },
+        {
+          "@id": "_:b35"
+        }
+      ],
+      "sup:governedBy": [
+        {
+          "@id": "sup:C-27"
+        },
+        {
+          "@id": "sup:C-33"
+        },
+        {
+          "@id": "sup:C-34"
+        },
+        {
+          "@id": "sup:C-35"
+        }
+      ],
+      "sup:answersQuestion": [
+        {
+          "@id": "sup:CQ-11"
+        },
+        {
+          "@id": "sup:CQ-17"
+        },
+        {
+          "@id": "sup:CQ-18"
+        },
+        {
+          "@id": "sup:CQ-19"
+        }
+      ],
+      "sup:raisesQuestion": [
+        {
+          "@id": "sup:OQ-24"
+        },
+        {
+          "@id": "sup:OQ-25"
+        },
+        {
+          "@id": "sup:OQ-15"
+        },
+        {
+          "@id": "sup:OQ-43"
+        }
+      ],
+      "owl:disjointWith": {
+        "@id": "sup:Ticket"
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:b107"
+        },
+        {
+          "@id": "_:b132"
+        },
+        {
+          "@id": "_:b133"
+        },
+        {
+          "@id": "_:b134"
+        },
+        {
+          "@id": "_:b135"
+        },
+        {
+          "@id": "_:b136"
+        }
+      ],
+      "sup:declaresEquivalence": {
+        "@id": "sup:EQ-04"
+      }
+    },
+    {
+      "@id": "_:b30",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Jira, Jira ID, ticket (dangerous — see below)",
+      "sup:aliasContext": "Everyday speech"
+    },
+    {
+      "@id": "_:b31",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Issue, Story, Bug, Defect",
+      "sup:aliasContext": "Development"
+    },
+    {
+      "@id": "_:b32",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Jira reference, Dev ID",
+      "sup:aliasContext": "CRM field"
+    },
+    {
+      "@id": "_:b33",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "Jira",
+      "sup:supplies": "The issue and all its fields",
+      "sup:authoritativeFor": "Everything"
+    },
+    {
+      "@id": "_:b34",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "Jira project configuration",
+      "sup:supplies": "Status-to-resolved mapping",
+      "sup:authoritativeFor": "isResolved derivation"
+    },
+    {
+      "@id": "_:b35",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "Salesforce",
+      "sup:supplies": "The Jira key stored on the case",
+      "sup:authoritativeFor": "Nothing — mirror only"
+    },
+    {
+      "@id": "sup:License",
+      "@type": "owl:Class",
+      "rdfs:label": "License",
+      "skos:prefLabel": "License",
+      "skos:definition": "A grant of the right to use a specific product, held by a specific account, for a defined period and quantity. The license is what makes a support request legitimate: an account may only raise tickets about products it is licensed for.",
+      "rdfs:comment": "A grant of the right to use a specific product, held by a specific account, for a defined period and quantity. The license is what makes a support request legitimate: an account may only raise tickets about products it is licensed for.",
+      "sup:domainType": "Customer",
+      "sup:status": "Canonical",
+      "sup:identityRule": "Composite: `accountId` + `productId` + `startDate`. A renewal produces a new License instance rather than mutating the existing one, so that historical coverage questions stay answerable.",
+      "sup:sourceFile": "Ontology/Entities/License.md",
+      "skos:altLabel": [
+        "Asset",
+        "Entitlement key",
+        "Serial",
+        "Subscription"
+      ],
+      "sup:hasAlias": [
+        {
+          "@id": "_:b36"
+        },
+        {
+          "@id": "_:b37"
+        },
+        {
+          "@id": "_:b38"
+        }
+      ],
+      "sup:hasProvenance": [
+        {
+          "@id": "_:b39"
+        },
+        {
+          "@id": "_:b40"
+        }
+      ],
+      "sup:governedBy": [
+        {
+          "@id": "sup:C-09"
+        },
+        {
+          "@id": "sup:C-13"
+        },
+        {
+          "@id": "sup:C-14"
+        },
+        {
+          "@id": "sup:C-53"
+        },
+        {
+          "@id": "sup:C-54"
+        }
+      ],
+      "sup:answersQuestion": [
+        {
+          "@id": "sup:CQ-04"
+        },
+        {
+          "@id": "sup:CQ-09"
+        },
+        {
+          "@id": "sup:CQ-13"
+        },
+        {
+          "@id": "sup:CQ-22"
+        },
+        {
+          "@id": "sup:CQ-29"
+        }
+      ],
+      "sup:raisesQuestion": [
+        {
+          "@id": "sup:OQ-42"
+        },
+        {
+          "@id": "sup:OQ-09"
+        },
+        {
+          "@id": "sup:OQ-10"
+        }
+      ],
+      "owl:disjointWith": {
+        "@id": "sup:SupportEntitlement"
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:b95"
+        },
+        {
+          "@id": "_:b100"
+        },
+        {
+          "@id": "_:b103"
+        },
+        {
+          "@id": "_:b137"
+        },
+        {
+          "@id": "_:b138"
+        },
+        {
+          "@id": "_:b139"
+        },
+        {
+          "@id": "_:b140"
+        }
+      ]
+    },
+    {
+      "@id": "_:b36",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Asset",
+      "sup:aliasContext": "Salesforce"
+    },
+    {
+      "@id": "_:b37",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Entitlement key, Serial",
+      "sup:aliasContext": "Licensing system"
+    },
+    {
+      "@id": "_:b38",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Subscription",
+      "sup:aliasContext": "Renewals reporting"
+    },
+    {
+      "@id": "_:b39",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "Licensing system",
+      "sup:supplies": "License keys, seats, dates",
+      "sup:authoritativeFor": "All license facts"
+    },
+    {
+      "@id": "_:b40",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "CRM",
+      "sup:supplies": "Asset records mirrored from licensing",
+      "sup:authoritativeFor": "Nothing — mirror only"
+    },
+    {
+      "@id": "sup:Partner",
+      "@type": "owl:Class",
+      "rdfs:label": "Partner",
+      "skos:prefLabel": "Partner",
+      "skos:definition": "An Independent Software Vendor (ISV) or partner organization that represents one or more accounts. Partners can submit and manage support tickets on behalf of the customers they represent.",
+      "rdfs:comment": "An Independent Software Vendor (ISV) or partner organization that represents one or more accounts. Partners can submit and manage support tickets on behalf of the customers they represent.",
+      "sup:domainType": "Customer",
+      "sup:status": "Proposed",
+      "sup:identityRule": "The CRM partner ID is authoritative.",
+      "sup:sourceFile": "Ontology/Entities/Partner.md",
+      "skos:altLabel": "Partner / ISV",
+      "sup:hasAlias": {
+        "@id": "_:b41"
+      },
+      "sup:hasProvenance": {
+        "@id": "_:b42"
+      },
+      "sup:governedBy": {
+        "@id": "sup:C-57"
+      },
+      "sup:answersQuestion": {
+        "@id": "sup:CQ-32"
+      },
+      "sup:raisesQuestion": {
+        "@id": "sup:OQ-49"
+      },
+      "owl:disjointWith": [
+        {
+          "@id": "sup:Account"
+        },
+        {
+          "@id": "sup:Contact"
+        }
+      ],
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:b141"
+        },
+        {
+          "@id": "_:b142"
+        }
+      ]
+    },
+    {
+      "@id": "_:b41",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Partner / ISV",
+      "sup:aliasContext": "CRM"
+    },
+    {
+      "@id": "_:b42",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "CRM",
+      "sup:supplies": "Partner record and relationships",
+      "sup:authoritativeFor": "partnerId, partnerName"
+    },
+    {
+      "@id": "sup:Product",
+      "@type": "owl:Class",
+      "rdfs:label": "Product",
+      "skos:prefLabel": "Product",
+      "skos:definition": "A software product that customers license and raise support tickets about. The Product is what a license grants access to, what a ticket concerns, and what documentation describes. It is the join point between the commercial, support and knowledge parts of the model.",
+      "rdfs:comment": "A software product that customers license and raise support tickets about. The Product is what a license grants access to, what a ticket concerns, and what documentation describes. It is the join point between the commercial, support and knowledge parts of the model.",
+      "sup:domainType": "Product",
+      "sup:status": "Canonical",
+      "sup:identityRule": "The licensing system product ID is authoritative. Version is not part of identity — a product and its versions are the same product. Version-specific facts would need `sup:ProductVersion`, which is not modelled (`OQ-15`).",
+      "sup:sourceFile": "Ontology/Entities/Product.md",
+      "skos:altLabel": [
+        "SKU",
+        "Part number",
+        "Product2",
+        "Asset product",
+        "Product",
+        "Component",
+        "Product folder",
+        "Product line",
+        "Product family"
+      ],
+      "sup:hasAlias": [
+        {
+          "@id": "_:b43"
+        },
+        {
+          "@id": "_:b44"
+        },
+        {
+          "@id": "_:b45"
+        },
+        {
+          "@id": "_:b46"
+        },
+        {
+          "@id": "_:b47"
+        }
+      ],
+      "sup:hasProvenance": [
+        {
+          "@id": "_:b48"
+        },
+        {
+          "@id": "_:b49"
+        },
+        {
+          "@id": "_:b50"
+        },
+        {
+          "@id": "_:b51"
+        },
+        {
+          "@id": "_:b52"
+        },
+        {
+          "@id": "_:b53"
+        }
+      ],
+      "sup:governedBy": [
+        {
+          "@id": "sup:C-22"
+        },
+        {
+          "@id": "sup:C-23"
+        },
+        {
+          "@id": "sup:C-51"
+        }
+      ],
+      "sup:answersQuestion": [
+        {
+          "@id": "sup:CQ-04"
+        },
+        {
+          "@id": "sup:CQ-07"
+        },
+        {
+          "@id": "sup:CQ-08"
+        },
+        {
+          "@id": "sup:CQ-09"
+        },
+        {
+          "@id": "sup:CQ-12"
+        },
+        {
+          "@id": "sup:CQ-13"
+        },
+        {
+          "@id": "sup:CQ-16"
+        },
+        {
+          "@id": "sup:CQ-22"
+        },
+        {
+          "@id": "sup:CQ-26"
+        }
+      ],
+      "sup:raisesQuestion": [
+        {
+          "@id": "sup:OQ-14"
+        },
+        {
+          "@id": "sup:OQ-15"
+        },
+        {
+          "@id": "sup:OQ-44"
+        }
+      ],
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:b143"
+        },
+        {
+          "@id": "_:b144"
+        },
+        {
+          "@id": "_:b145"
+        },
+        {
+          "@id": "_:b146"
+        },
+        {
+          "@id": "_:b147"
+        }
+      ]
+    },
+    {
+      "@id": "_:b43",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "SKU, Part number",
+      "sup:aliasContext": "Licensing system"
+    },
+    {
+      "@id": "_:b44",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Product2, Asset product",
+      "sup:aliasContext": "Salesforce"
+    },
+    {
+      "@id": "_:b45",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Product, Component",
+      "sup:aliasContext": "Support forms"
+    },
+    {
+      "@id": "_:b46",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Product, Product folder",
+      "sup:aliasContext": "KB tooling"
+    },
+    {
+      "@id": "_:b47",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Product line, Product family",
+      "sup:aliasContext": "Commercial reporting"
+    },
+    {
+      "@id": "_:b48",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "Licensing system",
+      "sup:supplies": "Product catalogue, SKUs",
+      "sup:authoritativeFor": "productId, productName"
+    },
+    {
+      "@id": "_:b49",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "Product management",
+      "sup:supplies": "Lifecycle status and EOL dates",
+      "sup:authoritativeFor": "lifecycleStatus, endOfLifeDate"
+    },
+    {
+      "@id": "_:b50",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "Release engineering",
+      "sup:supplies": "Current version",
+      "sup:authoritativeFor": "currentVersion"
+    },
+    {
+      "@id": "_:b51",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "Pricing and packaging",
+      "sup:supplies": "Tier naming per product",
+      "sup:authoritativeFor": "usesPlatinumNaming"
+    },
+    {
+      "@id": "_:b52",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "Support policy per product",
+      "sup:supplies": "Severity field naming",
+      "sup:authoritativeFor": "severityTermUsed"
+    },
+    {
+      "@id": "_:b53",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "KB folder structure",
+      "sup:supplies": "Documentation grouping",
+      "sup:authoritativeFor": "documentationRootUrl"
+    },
+    {
+      "@id": "sup:Region",
+      "@type": "owl:Class",
+      "rdfs:label": "Region",
+      "skos:prefLabel": "Region",
+      "skos:definition": "A geographic territory used to distribute accounts and assign commercial and support coverage. Regions determine which sales representative owns an account and which support team's working hours apply to its tickets.",
+      "rdfs:comment": "A geographic territory used to distribute accounts and assign commercial and support coverage. Regions determine which sales representative owns an account and which support team's working hours apply to its tickets.",
+      "sup:domainType": "Customer",
+      "sup:status": "Canonical",
+      "sup:identityRule": "Natural key: the region code (`EMEA`, `NA`, `APAC`, `LATAM`). Codes are stable and never reused.",
+      "sup:sourceFile": "Ontology/Entities/Region.md",
+      "skos:altLabel": [
+        "Territory",
+        "Geo",
+        "Coverage zone"
+      ],
+      "sup:hasAlias": [
+        {
+          "@id": "_:b54"
+        },
+        {
+          "@id": "_:b55"
+        }
+      ],
+      "sup:hasProvenance": [
+        {
+          "@id": "_:b56"
+        },
+        {
+          "@id": "_:b57"
+        }
+      ],
+      "sup:governedBy": {
+        "@id": "sup:C-10"
+      },
+      "sup:answersQuestion": [
+        {
+          "@id": "sup:CQ-01"
+        },
+        {
+          "@id": "sup:CQ-05"
+        },
+        {
+          "@id": "sup:CQ-14"
+        },
+        {
+          "@id": "sup:CQ-19"
+        }
+      ],
+      "sup:raisesQuestion": [
+        {
+          "@id": "sup:OQ-05"
+        },
+        {
+          "@id": "sup:OQ-41"
+        }
+      ],
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:b101"
+        },
+        {
+          "@id": "_:b148"
+        },
+        {
+          "@id": "_:b149"
+        }
+      ]
+    },
+    {
+      "@id": "_:b54",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Territory",
+      "sup:aliasContext": "Sales operations"
+    },
+    {
+      "@id": "_:b55",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Geo, Coverage zone",
+      "sup:aliasContext": "Support scheduling"
+    },
+    {
+      "@id": "_:b56",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "Salesforce",
+      "sup:supplies": "Territory assignment on the account",
+      "sup:authoritativeFor": "regionCode per account"
+    },
+    {
+      "@id": "_:b57",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "Sales operations spreadsheet",
+      "sup:supplies": "Region definitions and rep coverage",
+      "sup:authoritativeFor": "Region set, coverage map"
+    },
+    {
+      "@id": "sup:SalesRepresentative",
+      "@type": "owl:Class",
+      "rdfs:label": "SalesRepresentative",
+      "skos:prefLabel": "SalesRepresentative",
+      "skos:definition": "An internal individual who commercially owns a set of accounts. Assignment is driven by region: an account's sales representative is drawn from the representatives covering that account's region.",
+      "rdfs:comment": "An internal individual who commercially owns a set of accounts. Assignment is driven by region: an account's sales representative is drawn from the representatives covering that account's region.",
+      "sup:domainType": "Customer",
+      "sup:status": "Canonical",
+      "sup:identityRule": "The CRM user ID is authoritative.",
+      "sup:sourceFile": "Ontology/Entities/SalesRepresentative.md",
+      "skos:altLabel": [
+        "Account owner",
+        "Owner",
+        "AE",
+        "Account executive",
+        "Rep",
+        "Renewal owner"
+      ],
+      "sup:hasAlias": [
+        {
+          "@id": "_:b58"
+        },
+        {
+          "@id": "_:b59"
+        },
+        {
+          "@id": "_:b60"
+        }
+      ],
+      "sup:hasProvenance": [
+        {
+          "@id": "_:b61"
+        },
+        {
+          "@id": "_:b62"
+        }
+      ],
+      "sup:governedBy": [
+        {
+          "@id": "sup:C-07"
+        },
+        {
+          "@id": "sup:C-10"
+        },
+        {
+          "@id": "sup:C-46"
+        }
+      ],
+      "sup:answersQuestion": [
+        {
+          "@id": "sup:CQ-05"
+        },
+        {
+          "@id": "sup:CQ-19"
+        },
+        {
+          "@id": "sup:CQ-22"
+        }
+      ],
+      "sup:raisesQuestion": [
+        {
+          "@id": "sup:OQ-34"
+        },
+        {
+          "@id": "sup:OQ-35"
+        }
+      ],
+      "owl:disjointWith": [
+        {
+          "@id": "sup:SupportAgent"
+        },
+        {
+          "@id": "sup:CustomerSuccessManager"
+        }
+      ],
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:b92"
+        },
+        {
+          "@id": "_:b150"
+        },
+        {
+          "@id": "_:b151"
+        }
+      ]
+    },
+    {
+      "@id": "_:b58",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Account owner, Owner",
+      "sup:aliasContext": "Salesforce"
+    },
+    {
+      "@id": "_:b59",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "AE, Account executive, Rep",
+      "sup:aliasContext": "Sales team"
+    },
+    {
+      "@id": "_:b60",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Renewal owner (may be a different person — see OQ-34)",
+      "sup:aliasContext": "Renewals"
+    },
+    {
+      "@id": "_:b61",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "CRM",
+      "sup:supplies": "Account ownership",
+      "sup:authoritativeFor": "manages"
+    },
+    {
+      "@id": "_:b62",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "Sales operations territory model",
+      "sup:supplies": "Region coverage",
+      "sup:authoritativeFor": "covers"
+    },
+    {
+      "@id": "sup:SeverityLevel",
+      "@type": "owl:Class",
+      "rdfs:label": "SeverityLevel",
+      "skos:prefLabel": "SeverityLevel",
+      "skos:definition": "The graded measure of a ticket's business impact and urgency, used to set response expectations and routing. Every ticket has exactly one.",
+      "rdfs:comment": "The graded measure of a ticket's business impact and urgency, used to set response expectations and routing. Every ticket has exactly one.",
+      "sup:domainType": "Support",
+      "sup:status": "Canonical",
+      "sup:identityRule": "Natural key: the canonical level code `S1`–`S4`. All product-specific labels (`P1`, `Critical`, `High`, `1 - Urgent`) resolve to one of these four.",
+      "sup:sourceFile": "Ontology/Entities/SeverityLevel.md",
+      "skos:altLabel": [
+        "Severity",
+        "Sev",
+        "Priority",
+        "Pri",
+        "Impact",
+        "Urgency (informal",
+        "not a field)"
+      ],
+      "sup:hasAlias": [
+        {
+          "@id": "_:b63"
+        },
+        {
+          "@id": "_:b64"
+        },
+        {
+          "@id": "_:b65"
+        }
+      ],
+      "sup:hasProvenance": [
+        {
+          "@id": "_:b66"
+        },
+        {
+          "@id": "_:b67"
+        },
+        {
+          "@id": "_:b68"
+        }
+      ],
+      "sup:governedBy": [
+        {
+          "@id": "sup:C-04"
+        },
+        {
+          "@id": "sup:C-25"
+        },
+        {
+          "@id": "sup:C-26"
+        }
+      ],
+      "sup:answersQuestion": [
+        {
+          "@id": "sup:CQ-02"
+        },
+        {
+          "@id": "sup:CQ-08"
+        },
+        {
+          "@id": "sup:CQ-10"
+        },
+        {
+          "@id": "sup:CQ-15"
+        },
+        {
+          "@id": "sup:CQ-17"
+        },
+        {
+          "@id": "sup:CQ-23"
+        },
+        {
+          "@id": "sup:CQ-26"
+        },
+        {
+          "@id": "sup:CQ-27"
+        }
+      ],
+      "sup:raisesQuestion": [
+        {
+          "@id": "sup:OQ-19"
+        },
+        {
+          "@id": "sup:OQ-51"
+        },
+        {
+          "@id": "sup:OQ-20"
+        },
+        {
+          "@id": "sup:OQ-44"
+        }
+      ],
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:b152"
+        },
+        {
+          "@id": "_:b153"
+        },
+        {
+          "@id": "_:b154"
+        },
+        {
+          "@id": "_:b155"
+        }
+      ],
+      "sup:declaresEquivalence": {
+        "@id": "sup:EQ-03"
+      }
+    },
+    {
+      "@id": "_:b63",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Severity, Sev",
+      "sup:aliasContext": "Products using severity naming"
+    },
+    {
+      "@id": "_:b64",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Priority, Pri",
+      "sup:aliasContext": "Products using priority naming"
+    },
+    {
+      "@id": "_:b65",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Impact, Urgency (informal, not a field)",
+      "sup:aliasContext": "Escalation conversations"
+    },
+    {
+      "@id": "_:b66",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "CRM",
+      "sup:supplies": "The per-ticket value in the product's own vocabulary",
+      "sup:authoritativeFor": "Raw value only"
+    },
+    {
+      "@id": "_:b67",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "This ontology",
+      "sup:supplies": "The canonical four levels and the alias map",
+      "sup:authoritativeFor": "levelCode, levelRank"
+    },
+    {
+      "@id": "_:b68",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "Organization-wide support policy",
+      "sup:supplies": "Impact definitions",
+      "sup:authoritativeFor": "definition"
+    },
+    {
+      "@id": "sup:SLA",
+      "@type": "owl:Class",
+      "rdfs:label": "SLA",
+      "skos:prefLabel": "SLA",
+      "skos:definition": "The Service Level Agreement that governs a ticket, dictating the target times for response and resolution. An SLA is determined by the severity of the ticket and the entitlement of the customer account. Support agents are measured against their ability to meet these SLA targets.",
+      "rdfs:comment": "The Service Level Agreement that governs a ticket, dictating the target times for response and resolution. An SLA is determined by the severity of the ticket and the entitlement of the customer account. Support agents are measured against their ability to meet these SLA targets.",
+      "sup:domainType": "Support",
+      "sup:status": "Proposed",
+      "sup:identityRule": "A composite of `severityLevel` + `entitlementTier`.",
+      "sup:sourceFile": "Ontology/Entities/SLA.md",
+      "skos:altLabel": [
+        "Service Level Agreement",
+        "SLA"
+      ],
+      "sup:hasAlias": [
+        {
+          "@id": "_:b69"
+        },
+        {
+          "@id": "_:b70"
+        }
+      ],
+      "sup:hasProvenance": {
+        "@id": "_:b71"
+      },
+      "sup:governedBy": {
+        "@id": "sup:C-56"
+      },
+      "sup:answersQuestion": [
+        {
+          "@id": "sup:CQ-30"
+        },
+        {
+          "@id": "sup:CQ-31"
+        }
+      ],
+      "sup:raisesQuestion": {
+        "@id": "sup:OQ-48"
+      },
+      "owl:disjointWith": [
+        {
+          "@id": "sup:Ticket"
+        },
+        {
+          "@id": "sup:SeverityLevel"
+        },
+        {
+          "@id": "sup:SupportEntitlement"
+        }
+      ],
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:b156"
+        },
+        {
+          "@id": "_:b157"
+        },
+        {
+          "@id": "_:b158"
+        }
+      ]
+    },
+    {
+      "@id": "_:b69",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Service Level Agreement",
+      "sup:aliasContext": "CRM"
+    },
+    {
+      "@id": "_:b70",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "SLA",
+      "sup:aliasContext": "ITSM"
+    },
+    {
+      "@id": "_:b71",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "CRM",
+      "sup:supplies": "SLA matrix configuration",
+      "sup:authoritativeFor": "targetResponseMinutes, targetResolutionMinutes"
+    },
+    {
+      "@id": "sup:SupportAgent",
+      "@type": "owl:Class",
+      "rdfs:label": "SupportAgent",
+      "skos:prefLabel": "SupportAgent",
+      "skos:definition": "An internal member of the support organization who is assigned tickets, resolves them using documentation, and escalates to development when a ticket is caused by a defect or requires new functionality.",
+      "rdfs:comment": "An internal member of the support organization who is assigned tickets, resolves them using documentation, and escalates to development when a ticket is caused by a defect or requires new functionality.",
+      "sup:domainType": "Support",
+      "sup:status": "Canonical",
+      "sup:identityRule": "The CRM user ID is authoritative. Agents appearing in more than one CRM are matched on corporate email.",
+      "sup:sourceFile": "Ontology/Entities/SupportAgent.md",
+      "skos:altLabel": [
+        "Case owner",
+        "Assigned to",
+        "Owner",
+        "Support engineer",
+        "Technical support",
+        "Analyst",
+        "T1",
+        "T2",
+        "T3 agent"
+      ],
+      "sup:hasAlias": [
+        {
+          "@id": "_:b72"
+        },
+        {
+          "@id": "_:b73"
+        },
+        {
+          "@id": "_:b74"
+        }
+      ],
+      "sup:hasProvenance": [
+        {
+          "@id": "_:b75"
+        },
+        {
+          "@id": "_:b76"
+        }
+      ],
+      "sup:governedBy": [
+        {
+          "@id": "sup:C-29"
+        },
+        {
+          "@id": "sup:C-31"
+        },
+        {
+          "@id": "sup:C-32"
+        },
+        {
+          "@id": "sup:C-52"
+        }
+      ],
+      "sup:answersQuestion": [
+        {
+          "@id": "sup:CQ-10"
+        },
+        {
+          "@id": "sup:CQ-12"
+        },
+        {
+          "@id": "sup:CQ-15"
+        },
+        {
+          "@id": "sup:CQ-16"
+        },
+        {
+          "@id": "sup:CQ-18"
+        },
+        {
+          "@id": "sup:CQ-30"
+        }
+      ],
+      "sup:raisesQuestion": [
+        {
+          "@id": "sup:OQ-16"
+        },
+        {
+          "@id": "sup:OQ-23"
+        },
+        {
+          "@id": "sup:OQ-48"
+        }
+      ],
+      "owl:disjointWith": [
+        {
+          "@id": "sup:Contact"
+        },
+        {
+          "@id": "sup:SalesRepresentative"
+        },
+        {
+          "@id": "sup:CustomerSuccessManager"
+        }
+      ],
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:b159"
+        },
+        {
+          "@id": "_:b160"
+        }
+      ]
+    },
+    {
+      "@id": "_:b72",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Case owner, Assigned to, Owner",
+      "sup:aliasContext": "CRM"
+    },
+    {
+      "@id": "_:b73",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Support engineer, Technical support, Analyst",
+      "sup:aliasContext": "Team language"
+    },
+    {
+      "@id": "_:b74",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "T1, T2, T3 agent",
+      "sup:aliasContext": "Tiered teams"
+    },
+    {
+      "@id": "_:b75",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "CRM",
+      "sup:supplies": "User record, case ownership",
+      "sup:authoritativeFor": "agentId, handles"
+    },
+    {
+      "@id": "_:b76",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "Support team structure",
+      "sup:supplies": "Tier and product specialisation",
+      "sup:authoritativeFor": "tier, specialisesIn"
+    },
+    {
+      "@id": "sup:SupportEntitlement",
+      "@type": "owl:Class",
+      "rdfs:label": "SupportEntitlement",
+      "skos:prefLabel": "SupportEntitlement",
+      "skos:definition": "The tier of support service an account is entitled to receive. The tier governs response time targets, escalation rights and channel access. Entitlement is a property of the account, not of an individual ticket or license.",
+      "rdfs:comment": "The tier of support service an account is entitled to receive. The tier governs response time targets, escalation rights and channel access. Entitlement is a property of the account, not of an individual ticket or license.",
+      "sup:domainType": "Customer",
+      "sup:status": "Canonical",
+      "sup:identityRule": "Natural key: the canonical tier code (`STANDARD`, `PREMIUM`). Entitlement is a controlled vocabulary, not a per-account record — the per-account fact is the `hasEntitlement` link, and its effective dates live on the link.",
+      "sup:sourceFile": "Ontology/Entities/SupportEntitlement.md",
+      "skos:altLabel": [
+        "Support Level",
+        "Support Plan",
+        "Entitlement",
+        "Premium Support",
+        "Platinum Support",
+        "Standard Support",
+        "Basic",
+        "Platinum"
+      ],
+      "sup:hasAlias": [
+        {
+          "@id": "_:b77"
+        },
+        {
+          "@id": "_:b78"
+        },
+        {
+          "@id": "_:b79"
+        },
+        {
+          "@id": "_:b80"
+        },
+        {
+          "@id": "_:b81"
+        }
+      ],
+      "sup:hasProvenance": [
+        {
+          "@id": "_:b82"
+        },
+        {
+          "@id": "_:b83"
+        }
+      ],
+      "sup:governedBy": [
+        {
+          "@id": "sup:C-02"
+        },
+        {
+          "@id": "sup:C-11"
+        },
+        {
+          "@id": "sup:C-12"
+        },
+        {
+          "@id": "sup:C-53"
+        },
+        {
+          "@id": "sup:C-54"
+        }
+      ],
+      "sup:answersQuestion": [
+        {
+          "@id": "sup:CQ-02"
+        },
+        {
+          "@id": "sup:CQ-03"
+        },
+        {
+          "@id": "sup:CQ-11"
+        },
+        {
+          "@id": "sup:CQ-19"
+        },
+        {
+          "@id": "sup:CQ-23"
+        },
+        {
+          "@id": "sup:CQ-27"
+        },
+        {
+          "@id": "sup:CQ-29"
+        }
+      ],
+      "sup:raisesQuestion": [
+        {
+          "@id": "sup:OQ-06"
+        },
+        {
+          "@id": "sup:OQ-07"
+        },
+        {
+          "@id": "sup:OQ-08"
+        },
+        {
+          "@id": "sup:OQ-42"
+        }
+      ],
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:b161"
+        },
+        {
+          "@id": "_:b162"
+        },
+        {
+          "@id": "_:b163"
+        }
+      ],
+      "sup:declaresEquivalence": {
+        "@id": "sup:EQ-02"
+      }
+    },
+    {
+      "@id": "_:b77",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Support Level, Support Plan",
+      "sup:aliasContext": "Most products"
+    },
+    {
+      "@id": "_:b78",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Entitlement",
+      "sup:aliasContext": "Salesforce"
+    },
+    {
+      "@id": "_:b79",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Premium Support",
+      "sup:aliasContext": "Premium tier — most products"
+    },
+    {
+      "@id": "_:b80",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Platinum Support",
+      "sup:aliasContext": "Premium tier — Platinum-naming products"
+    },
+    {
+      "@id": "_:b81",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Standard Support, Basic (unverified)",
+      "sup:aliasContext": "Standard tier"
+    },
+    {
+      "@id": "_:b82",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "CRM",
+      "sup:supplies": "Entitlement field on account",
+      "sup:authoritativeFor": "Per-account tier"
+    },
+    {
+      "@id": "_:b83",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "Support policy documentation",
+      "sup:supplies": "Tier definitions and response targets",
+      "sup:authoritativeFor": "responseTargetHours"
+    },
+    {
+      "@id": "sup:Ticket",
+      "@type": "owl:Class",
+      "rdfs:label": "Ticket",
+      "skos:prefLabel": "Ticket",
+      "skos:definition": "A single recorded request for support from a customer account, tracked from submission to resolution. One ticket represents one customer problem. It is owned by exactly one account, assigned to at most one agent at a time, carries exactly one severity, is governed by exactly one SLA, and may be escalated to development. It may be submitted by a Contact at the account or, where the customer buys through one, by a Partner acting on the account's behalf.",
+      "rdfs:comment": "A single recorded request for support from a customer account, tracked from submission to resolution. One ticket represents one customer problem. It is owned by exactly one account, assigned to at most one agent at a time, carries exactly one severity, is governed by exactly one SLA, and may be escalated to development. It may be submitted by a Contact at the account or, where the customer buys through one, by a Partner acting on the account's behalf.",
+      "sup:domainType": "Support",
+      "sup:status": "Canonical",
+      "sup:identityRule": "The CRM ticket/case number is authoritative. Ticket numbers are unique within a CRM but not across CRMs — a fully qualified ticket identity is `systemCode` + `ticketNumber`. This is a real collision risk in reporting.",
+      "sup:sourceFile": "Ontology/Entities/Ticket.md",
+      "skos:altLabel": [
+        "Case",
+        "Incident",
+        "SR",
+        "Service Request"
+      ],
+      "sup:hasAlias": [
+        {
+          "@id": "_:b84"
+        },
+        {
+          "@id": "_:b85"
+        },
+        {
+          "@id": "_:b86"
+        }
+      ],
+      "sup:hasProvenance": [
+        {
+          "@id": "_:b87"
+        },
+        {
+          "@id": "_:b88"
+        }
+      ],
+      "sup:governedBy": [
+        {
+          "@id": "sup:C-04"
+        },
+        {
+          "@id": "sup:C-05"
+        },
+        {
+          "@id": "sup:C-06"
+        },
+        {
+          "@id": "sup:C-16"
+        },
+        {
+          "@id": "sup:C-24"
+        },
+        {
+          "@id": "sup:C-56"
+        },
+        {
+          "@id": "sup:C-57"
+        }
+      ],
+      "sup:answersQuestion": [
+        {
+          "@id": "sup:CQ-01"
+        },
+        {
+          "@id": "sup:CQ-02"
+        },
+        {
+          "@id": "sup:CQ-03"
+        },
+        {
+          "@id": "sup:CQ-06"
+        },
+        {
+          "@id": "sup:CQ-08"
+        },
+        {
+          "@id": "sup:CQ-10"
+        },
+        {
+          "@id": "sup:CQ-11"
+        },
+        {
+          "@id": "sup:CQ-15"
+        },
+        {
+          "@id": "sup:CQ-17"
+        },
+        {
+          "@id": "sup:CQ-18"
+        },
+        {
+          "@id": "sup:CQ-23"
+        },
+        {
+          "@id": "sup:CQ-26"
+        },
+        {
+          "@id": "sup:CQ-27"
+        },
+        {
+          "@id": "sup:CQ-30"
+        },
+        {
+          "@id": "sup:CQ-31"
+        },
+        {
+          "@id": "sup:CQ-32"
+        }
+      ],
+      "sup:raisesQuestion": [
+        {
+          "@id": "sup:OQ-16"
+        },
+        {
+          "@id": "sup:OQ-17"
+        },
+        {
+          "@id": "sup:OQ-18"
+        },
+        {
+          "@id": "sup:OQ-48"
+        },
+        {
+          "@id": "sup:OQ-49"
+        }
+      ],
+      "owl:disjointWith": {
+        "@id": "sup:JiraIssue"
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:b89"
+        },
+        {
+          "@id": "_:b90"
+        },
+        {
+          "@id": "_:b91"
+        },
+        {
+          "@id": "_:b99"
+        },
+        {
+          "@id": "_:b102"
+        },
+        {
+          "@id": "_:b108"
+        },
+        {
+          "@id": "_:b109"
+        },
+        {
+          "@id": "_:b110"
+        },
+        {
+          "@id": "_:b164"
+        },
+        {
+          "@id": "_:b165"
+        },
+        {
+          "@id": "_:b166"
+        },
+        {
+          "@id": "_:b167"
+        }
+      ],
+      "sup:declaresEquivalence": [
+        {
+          "@id": "sup:EQ-01"
+        },
+        {
+          "@id": "sup:EQ-04"
+        }
+      ]
+    },
+    {
+      "@id": "_:b84",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Case",
+      "sup:aliasContext": "CRM systems using Case terminology"
+    },
+    {
+      "@id": "_:b85",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "Incident",
+      "sup:aliasContext": "ITSM-influenced teams"
+    },
+    {
+      "@id": "_:b86",
+      "@type": "sup:Alias",
+      "sup:aliasTerm": "SR, Service Request",
+      "sup:aliasContext": "Older systems"
+    },
+    {
+      "@id": "_:b87",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "CRM",
+      "sup:supplies": "The ticket record and all its fields",
+      "sup:authoritativeFor": "Everything except escalation links"
+    },
+    {
+      "@id": "_:b88",
+      "@type": "sup:ProvenanceEntry",
+      "sup:sourceSystem": "Jira",
+      "sup:supplies": "Escalation linkage confirmation",
+      "sup:authoritativeFor": "Nothing on the ticket directly"
+    },
+    {
+      "@id": "sup:appliesTo",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "appliesTo",
+      "rdfs:domain": {
+        "@id": "sup:SeverityLevel"
+      },
+      "rdfs:range": {
+        "@id": "sup:Ticket"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:hasSeverity"
+      }
+    },
+    {
+      "@id": "sup:assignedTo",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "assignedTo",
+      "rdfs:domain": {
+        "@id": "sup:Ticket"
+      },
+      "rdfs:range": {
+        "@id": "sup:SupportAgent"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:handles"
+      }
+    },
+    {
+      "@id": "_:b89",
+      "owl:maxQualifiedCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      },
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:assignedTo"
+      },
+      "owl:onClass": {
+        "@id": "sup:SupportAgent"
+      },
+      "sup:cardinalityNotation": "0..1"
+    },
+    {
+      "@id": "sup:belongsTo",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "belongsTo",
+      "rdfs:domain": {
+        "@id": "sup:Ticket"
+      },
+      "rdfs:range": {
+        "@id": "sup:Account"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:raises"
+      }
+    },
+    {
+      "@id": "_:b90",
+      "owl:qualifiedCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      },
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:belongsTo"
+      },
+      "owl:onClass": {
+        "@id": "sup:Account"
+      },
+      "sup:cardinalityNotation": "1..1"
+    },
+    {
+      "@id": "sup:binds",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "binds",
+      "rdfs:domain": {
+        "@id": "sup:SupportEntitlement"
+      },
+      "rdfs:range": {
+        "@id": "sup:License"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:isBoundTo"
+      }
+    },
+    {
+      "@id": "sup:concerns",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "concerns",
+      "rdfs:domain": {
+        "@id": "sup:Ticket"
+      },
+      "rdfs:range": {
+        "@id": "sup:Product"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:isSubjectOf"
+      }
+    },
+    {
+      "@id": "_:b91",
+      "owl:qualifiedCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      },
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:concerns"
+      },
+      "owl:onClass": {
+        "@id": "sup:Product"
+      },
+      "sup:cardinalityNotation": "1..1"
+    },
+    {
+      "@id": "sup:consults",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "consults",
+      "rdfs:domain": {
+        "@id": "sup:SupportAgent"
+      },
+      "rdfs:range": {
+        "@id": "sup:Documentation"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:isConsultedBy"
+      }
+    },
+    {
+      "@id": "sup:covers",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "covers",
+      "rdfs:domain": {
+        "@id": "sup:SalesRepresentative"
+      },
+      "rdfs:range": {
+        "@id": "sup:Region"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:isCoveredBy"
+      }
+    },
+    {
+      "@id": "_:b92",
+      "owl:minQualifiedCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      },
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:covers"
+      },
+      "owl:onClass": {
+        "@id": "sup:Region"
+      },
+      "sup:cardinalityNotation": "1..*"
+    },
+    {
+      "@id": "sup:describes",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "describes",
+      "rdfs:domain": {
+        "@id": "sup:Documentation"
+      },
+      "rdfs:range": {
+        "@id": "sup:Product"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:isDescribedBy"
+      }
+    },
+    {
+      "@id": "_:b93",
+      "owl:qualifiedCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      },
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:describes"
+      },
+      "owl:onClass": {
+        "@id": "sup:Product"
+      },
+      "sup:cardinalityNotation": "1..1"
+    },
+    {
+      "@id": "sup:entitles",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "entitles",
+      "rdfs:domain": {
+        "@id": "sup:SupportEntitlement"
+      },
+      "rdfs:range": {
+        "@id": "sup:Account"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:hasEntitlement"
+      }
+    },
+    {
+      "@id": "sup:escalatedAs",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "escalatedAs",
+      "rdfs:domain": {
+        "@id": "sup:Ticket"
+      },
+      "rdfs:range": {
+        "@id": "sup:Escalation"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:originatesFrom"
+      }
+    },
+    {
+      "@id": "sup:escalatedBy",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "escalatedBy",
+      "rdfs:domain": {
+        "@id": "sup:Escalation"
+      },
+      "rdfs:range": {
+        "@id": "sup:SupportAgent"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:escalates"
+      }
+    },
+    {
+      "@id": "_:b94",
+      "owl:qualifiedCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      },
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:escalatedBy"
+      },
+      "owl:onClass": {
+        "@id": "sup:SupportAgent"
+      },
+      "sup:cardinalityNotation": "1..1"
+    },
+    {
+      "@id": "sup:escalates",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "escalates",
+      "rdfs:domain": {
+        "@id": "sup:SupportAgent"
+      },
+      "rdfs:range": {
+        "@id": "sup:Escalation"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:escalatedBy"
+      }
+    },
+    {
+      "@id": "sup:governs",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "governs",
+      "rdfs:domain": {
+        "@id": "sup:SLA"
+      },
+      "rdfs:range": {
+        "@id": "sup:Ticket"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:isGovernedBy"
+      }
+    },
+    {
+      "@id": "sup:grantsAccessTo",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "grantsAccessTo",
+      "rdfs:domain": {
+        "@id": "sup:License"
+      },
+      "rdfs:range": {
+        "@id": "sup:Product"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:isLicensedBy"
+      }
+    },
+    {
+      "@id": "_:b95",
+      "owl:qualifiedCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      },
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:grantsAccessTo"
+      },
+      "owl:onClass": {
+        "@id": "sup:Product"
+      },
+      "sup:cardinalityNotation": "1..1"
+    },
+    {
+      "@id": "sup:handles",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "handles",
+      "rdfs:domain": {
+        "@id": "sup:SupportAgent"
+      },
+      "rdfs:range": {
+        "@id": "sup:Ticket"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:assignedTo"
+      }
+    },
+    {
+      "@id": "sup:hasCSM",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "hasCSM",
+      "rdfs:domain": {
+        "@id": "sup:Account"
+      },
+      "rdfs:range": {
+        "@id": "sup:CustomerSuccessManager"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:supports"
+      }
+    },
+    {
+      "@id": "_:b96",
+      "owl:maxQualifiedCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      },
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:hasCSM"
+      },
+      "owl:onClass": {
+        "@id": "sup:CustomerSuccessManager"
+      },
+      "sup:cardinalityNotation": "0..1"
+    },
+    {
+      "@id": "sup:hasContact",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "hasContact",
+      "rdfs:domain": {
+        "@id": "sup:Account"
+      },
+      "rdfs:range": {
+        "@id": "sup:Contact"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:worksFor"
+      }
+    },
+    {
+      "@id": "sup:hasEntitlement",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "hasEntitlement",
+      "rdfs:domain": {
+        "@id": "sup:Account"
+      },
+      "rdfs:range": {
+        "@id": "sup:SupportEntitlement"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:entitles"
+      }
+    },
+    {
+      "@id": "_:b97",
+      "owl:qualifiedCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      },
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:hasEntitlement"
+      },
+      "owl:onClass": {
+        "@id": "sup:SupportEntitlement"
+      },
+      "sup:cardinalityNotation": "1..1"
+    },
+    {
+      "@id": "sup:hasSalesRep",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "hasSalesRep",
+      "rdfs:domain": {
+        "@id": "sup:Account"
+      },
+      "rdfs:range": {
+        "@id": "sup:SalesRepresentative"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:manages"
+      }
+    },
+    {
+      "@id": "_:b98",
+      "owl:qualifiedCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      },
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:hasSalesRep"
+      },
+      "owl:onClass": {
+        "@id": "sup:SalesRepresentative"
+      },
+      "sup:cardinalityNotation": "1..1"
+    },
+    {
+      "@id": "sup:hasSeverity",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "hasSeverity",
+      "rdfs:domain": {
+        "@id": "sup:Ticket"
+      },
+      "rdfs:range": {
+        "@id": "sup:SeverityLevel"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:appliesTo"
+      }
+    },
+    {
+      "@id": "_:b99",
+      "owl:qualifiedCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      },
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:hasSeverity"
+      },
+      "owl:onClass": {
+        "@id": "sup:SeverityLevel"
+      },
+      "sup:cardinalityNotation": "1..1"
+    },
+    {
+      "@id": "sup:holdsLicense",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "holdsLicense",
+      "rdfs:domain": {
+        "@id": "sup:Account"
+      },
+      "rdfs:range": {
+        "@id": "sup:License"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:isHeldBy"
+      }
+    },
+    {
+      "@id": "sup:isBoundTo",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "isBoundTo",
+      "rdfs:domain": {
+        "@id": "sup:License"
+      },
+      "rdfs:range": {
+        "@id": "sup:SupportEntitlement"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:binds"
+      }
+    },
+    {
+      "@id": "_:b100",
+      "owl:qualifiedCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      },
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:isBoundTo"
+      },
+      "owl:onClass": {
+        "@id": "sup:SupportEntitlement"
+      },
+      "sup:cardinalityNotation": "1..1"
+    },
+    {
+      "@id": "sup:isConsultedBy",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "isConsultedBy",
+      "rdfs:domain": {
+        "@id": "sup:Documentation"
+      },
+      "rdfs:range": {
+        "@id": "sup:SupportAgent"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:consults"
+      }
+    },
+    {
+      "@id": "sup:isCoveredBy",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "isCoveredBy",
+      "rdfs:domain": {
+        "@id": "sup:Region"
+      },
+      "rdfs:range": {
+        "@id": "sup:SalesRepresentative"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:covers"
+      }
+    },
+    {
+      "@id": "_:b101",
+      "owl:minQualifiedCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      },
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:isCoveredBy"
+      },
+      "owl:onClass": {
+        "@id": "sup:SalesRepresentative"
+      },
+      "sup:cardinalityNotation": "1..*"
+    },
+    {
+      "@id": "sup:isDescribedBy",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "isDescribedBy",
+      "rdfs:domain": {
+        "@id": "sup:Product"
+      },
+      "rdfs:range": {
+        "@id": "sup:Documentation"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:describes"
+      }
+    },
+    {
+      "@id": "sup:isGovernedBy",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "isGovernedBy",
+      "rdfs:domain": {
+        "@id": "sup:Ticket"
+      },
+      "rdfs:range": {
+        "@id": "sup:SLA"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:governs"
+      }
+    },
+    {
+      "@id": "_:b102",
+      "owl:qualifiedCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      },
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:isGovernedBy"
+      },
+      "owl:onClass": {
+        "@id": "sup:SLA"
+      },
+      "sup:cardinalityNotation": "1..1"
+    },
+    {
+      "@id": "sup:isHeldBy",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "isHeldBy",
+      "rdfs:domain": {
+        "@id": "sup:License"
+      },
+      "rdfs:range": {
+        "@id": "sup:Account"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:holdsLicense"
+      }
+    },
+    {
+      "@id": "_:b103",
+      "owl:qualifiedCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      },
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:isHeldBy"
+      },
+      "owl:onClass": {
+        "@id": "sup:Account"
+      },
+      "sup:cardinalityNotation": "1..1"
+    },
+    {
+      "@id": "sup:isLicensedBy",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "isLicensedBy",
+      "rdfs:domain": {
+        "@id": "sup:Product"
+      },
+      "rdfs:range": {
+        "@id": "sup:License"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:grantsAccessTo"
+      }
+    },
+    {
+      "@id": "sup:isLocatedIn",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "isLocatedIn",
+      "rdfs:domain": {
+        "@id": "sup:Account"
+      },
+      "rdfs:range": {
+        "@id": "sup:Region"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:isRegionOf"
+      }
+    },
+    {
+      "@id": "_:b104",
+      "owl:qualifiedCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      },
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:isLocatedIn"
+      },
+      "owl:onClass": {
+        "@id": "sup:Region"
+      },
+      "sup:cardinalityNotation": "1..1"
+    },
+    {
+      "@id": "sup:isRegionOf",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "isRegionOf",
+      "rdfs:domain": {
+        "@id": "sup:Region"
+      },
+      "rdfs:range": {
+        "@id": "sup:Account"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:isLocatedIn"
+      }
+    },
+    {
+      "@id": "sup:isRepresentedBy",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "isRepresentedBy",
+      "rdfs:domain": {
+        "@id": "sup:Account"
+      },
+      "rdfs:range": {
+        "@id": "sup:Partner"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:represents"
+      }
+    },
+    {
+      "@id": "sup:isSubjectOf",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "isSubjectOf",
+      "rdfs:domain": {
+        "@id": "sup:Product"
+      },
+      "rdfs:range": {
+        "@id": "sup:Ticket"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:concerns"
+      }
+    },
+    {
+      "@id": "sup:isSupportedBy",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "isSupportedBy",
+      "rdfs:domain": {
+        "@id": "sup:Product"
+      },
+      "rdfs:range": {
+        "@id": "sup:SupportAgent"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:specialisesIn"
+      }
+    },
+    {
+      "@id": "sup:manages",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "manages",
+      "rdfs:domain": {
+        "@id": "sup:SalesRepresentative"
+      },
+      "rdfs:range": {
+        "@id": "sup:Account"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:hasSalesRep"
+      }
+    },
+    {
+      "@id": "sup:measuredAgainst",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "measuredAgainst",
+      "rdfs:domain": {
+        "@id": "sup:SupportAgent"
+      },
+      "rdfs:range": {
+        "@id": "sup:SLA"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:measures"
+      }
+    },
+    {
+      "@id": "sup:measures",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "measures",
+      "rdfs:domain": {
+        "@id": "sup:SLA"
+      },
+      "rdfs:range": {
+        "@id": "sup:SupportAgent"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:measuredAgainst"
+      }
+    },
+    {
+      "@id": "sup:originatesFrom",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "originatesFrom",
+      "rdfs:domain": {
+        "@id": "sup:Escalation"
+      },
+      "rdfs:range": {
+        "@id": "sup:Ticket"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:escalatedAs"
+      }
+    },
+    {
+      "@id": "_:b105",
+      "owl:qualifiedCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      },
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:originatesFrom"
+      },
+      "owl:onClass": {
+        "@id": "sup:Ticket"
+      },
+      "sup:cardinalityNotation": "1..1"
+    },
+    {
+      "@id": "sup:producedIssue",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "producedIssue",
+      "rdfs:domain": {
+        "@id": "sup:Escalation"
+      },
+      "rdfs:range": {
+        "@id": "sup:JiraIssue"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:raisedBy"
+      }
+    },
+    {
+      "@id": "_:b106",
+      "owl:qualifiedCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      },
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:producedIssue"
+      },
+      "owl:onClass": {
+        "@id": "sup:JiraIssue"
+      },
+      "sup:cardinalityNotation": "1..1"
+    },
+    {
+      "@id": "sup:raisedBy",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "raisedBy",
+      "rdfs:domain": {
+        "@id": "sup:JiraIssue"
+      },
+      "rdfs:range": {
+        "@id": "sup:Escalation"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:producedIssue"
+      }
+    },
+    {
+      "@id": "_:b107",
+      "owl:minQualifiedCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      },
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:raisedBy"
+      },
+      "owl:onClass": {
+        "@id": "sup:Escalation"
+      },
+      "sup:cardinalityNotation": "1..*"
+    },
+    {
+      "@id": "sup:raises",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "raises",
+      "rdfs:domain": {
+        "@id": "sup:Account"
+      },
+      "rdfs:range": {
+        "@id": "sup:Ticket"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:belongsTo"
+      }
+    },
+    {
+      "@id": "sup:raisesOnBehalfOf",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "raisesOnBehalfOf",
+      "rdfs:domain": {
+        "@id": "sup:Partner"
+      },
+      "rdfs:range": {
+        "@id": "sup:Ticket"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:submittedByPartner"
+      }
+    },
+    {
+      "@id": "sup:recordedIn",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "recordedIn",
+      "rdfs:domain": {
+        "@id": "sup:Ticket"
+      },
+      "rdfs:range": {
+        "@id": "sup:CRM"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:records"
+      }
+    },
+    {
+      "@id": "_:b108",
+      "owl:qualifiedCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      },
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:recordedIn"
+      },
+      "owl:onClass": {
+        "@id": "sup:CRM"
+      },
+      "sup:cardinalityNotation": "1..1"
+    },
+    {
+      "@id": "sup:records",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "records",
+      "rdfs:domain": {
+        "@id": "sup:CRM"
+      },
+      "rdfs:range": {
+        "@id": "sup:Ticket"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:recordedIn"
+      }
+    },
+    {
+      "@id": "sup:represents",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "represents",
+      "rdfs:domain": {
+        "@id": "sup:Partner"
+      },
+      "rdfs:range": {
+        "@id": "sup:Account"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:isRepresentedBy"
+      }
+    },
+    {
+      "@id": "sup:resolvedUsing",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "resolvedUsing",
+      "rdfs:domain": {
+        "@id": "sup:Ticket"
+      },
+      "rdfs:range": {
+        "@id": "sup:Documentation"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:resolves"
+      }
+    },
+    {
+      "@id": "sup:resolves",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "resolves",
+      "rdfs:domain": {
+        "@id": "sup:Documentation"
+      },
+      "rdfs:range": {
+        "@id": "sup:Ticket"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:resolvedUsing"
+      }
+    },
+    {
+      "@id": "sup:specialisesIn",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "specialisesIn",
+      "rdfs:domain": {
+        "@id": "sup:SupportAgent"
+      },
+      "rdfs:range": {
+        "@id": "sup:Product"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:isSupportedBy"
+      }
+    },
+    {
+      "@id": "sup:submits",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "submits",
+      "rdfs:domain": {
+        "@id": "sup:Contact"
+      },
+      "rdfs:range": {
+        "@id": "sup:Ticket"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:submittedBy"
+      }
+    },
+    {
+      "@id": "sup:submittedBy",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "submittedBy",
+      "rdfs:domain": {
+        "@id": "sup:Ticket"
+      },
+      "rdfs:range": {
+        "@id": "sup:Contact"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:submits"
+      }
+    },
+    {
+      "@id": "_:b109",
+      "owl:maxQualifiedCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      },
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:submittedBy"
+      },
+      "owl:onClass": {
+        "@id": "sup:Contact"
+      },
+      "sup:cardinalityNotation": "0..1"
+    },
+    {
+      "@id": "sup:submittedByPartner",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "submittedByPartner",
+      "rdfs:domain": {
+        "@id": "sup:Ticket"
+      },
+      "rdfs:range": {
+        "@id": "sup:Partner"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:raisesOnBehalfOf"
+      }
+    },
+    {
+      "@id": "_:b110",
+      "owl:maxQualifiedCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      },
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:submittedByPartner"
+      },
+      "owl:onClass": {
+        "@id": "sup:Partner"
+      },
+      "sup:cardinalityNotation": "0..1"
+    },
+    {
+      "@id": "sup:supports",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "supports",
+      "rdfs:domain": {
+        "@id": "sup:CustomerSuccessManager"
+      },
+      "rdfs:range": {
+        "@id": "sup:Account"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:hasCSM"
+      }
+    },
+    {
+      "@id": "sup:worksFor",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "worksFor",
+      "rdfs:domain": {
+        "@id": "sup:Contact"
+      },
+      "rdfs:range": {
+        "@id": "sup:Account"
+      },
+      "owl:inverseOf": {
+        "@id": "sup:hasContact"
+      }
+    },
+    {
+      "@id": "_:b111",
+      "owl:qualifiedCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      },
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:worksFor"
+      },
+      "owl:onClass": {
+        "@id": "sup:Account"
+      },
+      "sup:cardinalityNotation": "1..1"
+    },
+    {
+      "@id": "sup:accountId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "accountId",
+      "rdfs:domain": {
+        "@id": "sup:Account"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:comment": "CRM primary key",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b112",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:accountId"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:accountName",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "accountName",
+      "rdfs:domain": {
+        "@id": "sup:Account"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:comment": "Legal or trading name",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b113",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:accountName"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:isStrategic",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "isStrategic",
+      "rdfs:domain": {
+        "@id": "sup:Account"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      },
+      "rdfs:comment": "Drives CSM eligibility — see C-08"
+    },
+    {
+      "@id": "sup:accountStatus",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "accountStatus",
+      "rdfs:domain": {
+        "@id": "sup:Account"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "sup:permittedValue": [
+        "Active",
+        "Lapsed",
+        "Churned"
+      ],
+      "rdfs:comment": "Lapsed = no active license",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b114",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:accountStatus"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:createdAt",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "createdAt",
+      "rdfs:domain": [
+        {
+          "@id": "sup:Account"
+        },
+        {
+          "@id": "sup:JiraIssue"
+        }
+      ],
+      "rdfs:range": [
+        {
+          "@id": "xsd:date"
+        },
+        {
+          "@id": "xsd:dateTime"
+        }
+      ],
+      "rdfs:comment": "First became a customer",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b115",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:createdAt"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:contactId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "contactId",
+      "rdfs:domain": {
+        "@id": "sup:Contact"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:comment": "CRM primary key",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b116",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:contactId"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:emailAddress",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "emailAddress",
+      "rdfs:domain": {
+        "@id": "sup:Contact"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:comment": "Also the join key to ticket submissions",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b117",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:emailAddress"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:isSupportAuthorised",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "isSupportAuthorised",
+      "rdfs:domain": {
+        "@id": "sup:Contact"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      },
+      "rdfs:comment": "Whether this contact may open tickets",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b118",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:isSupportAuthorised"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:isPrimary",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "isPrimary",
+      "rdfs:domain": {
+        "@id": "sup:Contact"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      },
+      "rdfs:comment": "Primary technical contact for the account"
+    },
+    {
+      "@id": "sup:systemCode",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "systemCode",
+      "rdfs:domain": {
+        "@id": "sup:CRM"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:comment": "Stable short code",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b119",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:systemCode"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:systemName",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "systemName",
+      "rdfs:domain": {
+        "@id": "sup:CRM"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b120",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:systemName"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:ticketTermUsed",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "ticketTermUsed",
+      "rdfs:domain": {
+        "@id": "sup:CRM"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "sup:permittedValue": [
+        "Ticket",
+        "Case"
+      ],
+      "rdfs:comment": "The alias anchor for EQ-01",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b121",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:ticketTermUsed"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:isAuthoritative",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "isAuthoritative",
+      "rdfs:domain": {
+        "@id": "sup:CRM"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      },
+      "rdfs:comment": "Whether this system is the source of truth or a mirror",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b122",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:isAuthoritative"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:csmId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "csmId",
+      "rdfs:domain": {
+        "@id": "sup:CustomerSuccessManager"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:comment": "CRM user ID",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b123",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:csmId"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:isActive",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "isActive",
+      "rdfs:domain": [
+        {
+          "@id": "sup:CustomerSuccessManager"
+        },
+        {
+          "@id": "sup:License"
+        },
+        {
+          "@id": "sup:SalesRepresentative"
+        },
+        {
+          "@id": "sup:SupportAgent"
+        }
+      ],
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      },
+      "rdfs:comment": [
+        "Currently holding the role",
+        "Derived: endDate is null or in the future"
+      ],
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b124",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:isActive"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:articleUrl",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "articleUrl",
+      "rdfs:domain": {
+        "@id": "sup:Documentation"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:comment": "Canonical published URL — the identity",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b125",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:articleUrl"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:title",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "title",
+      "rdfs:domain": {
+        "@id": "sup:Documentation"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b126",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:title"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:lastReviewedAt",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "lastReviewedAt",
+      "rdfs:domain": {
+        "@id": "sup:Documentation"
+      },
+      "rdfs:range": {
+        "@id": "xsd:date"
+      },
+      "rdfs:comment": "Staleness signal for C-40"
+    },
+    {
+      "@id": "sup:isPublic",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "isPublic",
+      "rdfs:domain": {
+        "@id": "sup:Documentation"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      },
+      "rdfs:comment": "Whether customers can reach it",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b127",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:isPublic"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:escalationId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "escalationId",
+      "rdfs:domain": {
+        "@id": "sup:Escalation"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:comment": "Surrogate key",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b128",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:escalationId"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:escalationType",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "escalationType",
+      "rdfs:domain": {
+        "@id": "sup:Escalation"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "sup:permittedValue": [
+        "Bug",
+        "Enhancement"
+      ],
+      "rdfs:comment": "The agent's classification",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b129",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:escalationType"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:escalatedAt",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "escalatedAt",
+      "rdfs:domain": {
+        "@id": "sup:Escalation"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b130",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:escalatedAt"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:justification",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "justification",
+      "rdfs:domain": {
+        "@id": "sup:Escalation"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:comment": "Why the agent judged this a dev matter",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b131",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:justification"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:wasAccepted",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "wasAccepted",
+      "rdfs:domain": {
+        "@id": "sup:Escalation"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      },
+      "rdfs:comment": "Whether development accepted the classification"
+    },
+    {
+      "@id": "sup:reproductionSteps",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "reproductionSteps",
+      "rdfs:domain": {
+        "@id": "sup:Escalation"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:comment": "Expected for Bug type"
+    },
+    {
+      "@id": "sup:issueKey",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "issueKey",
+      "rdfs:domain": {
+        "@id": "sup:JiraIssue"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:comment": "e.g. PROJ-1234",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b132",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:issueKey"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:issueType",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "issueType",
+      "rdfs:domain": {
+        "@id": "sup:JiraIssue"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "sup:permittedValue": [
+        "Bug",
+        "Enhancement"
+      ],
+      "rdfs:comment": "Matches escalation type at creation",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b133",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:issueType"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:issueStatus",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "issueStatus",
+      "rdfs:domain": {
+        "@id": "sup:JiraIssue"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:comment": "Jira workflow status — varies by project",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b134",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:issueStatus"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:isResolved",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "isResolved",
+      "rdfs:domain": {
+        "@id": "sup:JiraIssue"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      },
+      "rdfs:comment": "Normalised across the varying workflows",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b135",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:isResolved"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:fixVersion",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "fixVersion",
+      "rdfs:domain": {
+        "@id": "sup:JiraIssue"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:comment": "Release that carries the fix"
+    },
+    {
+      "@id": "_:b136",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:createdAt"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:licenseKey",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "licenseKey",
+      "rdfs:domain": {
+        "@id": "sup:License"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:comment": "Licensing system identifier",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b137",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:licenseKey"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:seatCount",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "seatCount",
+      "rdfs:domain": {
+        "@id": "sup:License"
+      },
+      "rdfs:range": {
+        "@id": "xsd:integer"
+      },
+      "rdfs:comment": "Null for unlimited or site licenses"
+    },
+    {
+      "@id": "sup:startDate",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "startDate",
+      "rdfs:domain": {
+        "@id": "sup:License"
+      },
+      "rdfs:range": {
+        "@id": "xsd:date"
+      },
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b138",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:startDate"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:endDate",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "endDate",
+      "rdfs:domain": {
+        "@id": "sup:License"
+      },
+      "rdfs:range": {
+        "@id": "xsd:date"
+      },
+      "rdfs:comment": "Null = perpetual"
+    },
+    {
+      "@id": "_:b139",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:isActive"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:licenseType",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "licenseType",
+      "rdfs:domain": {
+        "@id": "sup:License"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "sup:permittedValue": [
+        "Subscription",
+        "Perpetual",
+        "Trial",
+        "NFR"
+      ],
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b140",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:licenseType"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:partnerId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "partnerId",
+      "rdfs:domain": {
+        "@id": "sup:Partner"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:comment": "CRM primary key for the partner",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b141",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:partnerId"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:partnerName",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "partnerName",
+      "rdfs:domain": {
+        "@id": "sup:Partner"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:comment": "Legal or trading name of the partner",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b142",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:partnerName"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:partnershipLevel",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "partnershipLevel",
+      "rdfs:domain": {
+        "@id": "sup:Partner"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:comment": "E.g., Gold, Silver"
+    },
+    {
+      "@id": "sup:productId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "productId",
+      "rdfs:domain": {
+        "@id": "sup:Product"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:comment": "Licensing system key",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b143",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:productId"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:productName",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "productName",
+      "rdfs:domain": {
+        "@id": "sup:Product"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b144",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:productName"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:currentVersion",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "currentVersion",
+      "rdfs:domain": {
+        "@id": "sup:Product"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:comment": "Latest generally available release"
+    },
+    {
+      "@id": "sup:lifecycleStatus",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "lifecycleStatus",
+      "rdfs:domain": {
+        "@id": "sup:Product"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "sup:permittedValue": [
+        "GA",
+        "Maintenance",
+        "EndOfLife"
+      ],
+      "rdfs:comment": "EOL drives documentation retirement",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b145",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:lifecycleStatus"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:endOfLifeDate",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "endOfLifeDate",
+      "rdfs:domain": {
+        "@id": "sup:Product"
+      },
+      "rdfs:range": {
+        "@id": "xsd:date"
+      },
+      "rdfs:comment": "Required when lifecycleStatus = EndOfLife"
+    },
+    {
+      "@id": "sup:usesPlatinumNaming",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "usesPlatinumNaming",
+      "rdfs:domain": {
+        "@id": "sup:Product"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      },
+      "rdfs:comment": "True where Premium Support is sold as Platinum Support — alias anchor for EQ-02",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b146",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:usesPlatinumNaming"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:severityTermUsed",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "severityTermUsed",
+      "rdfs:domain": {
+        "@id": "sup:Product"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "sup:permittedValue": [
+        "Severity",
+        "Priority"
+      ],
+      "rdfs:comment": "Which word this product's support uses — alias anchor for EQ-03",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b147",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:severityTermUsed"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:documentationRootUrl",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "documentationRootUrl",
+      "rdfs:domain": {
+        "@id": "sup:Product"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:comment": "Entry point for this product's KB"
+    },
+    {
+      "@id": "sup:regionCode",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "regionCode",
+      "rdfs:domain": {
+        "@id": "sup:Region"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:comment": "Short stable code",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b148",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:regionCode"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:regionName",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "regionName",
+      "rdfs:domain": {
+        "@id": "sup:Region"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:comment": "Display name",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b149",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:regionName"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:timeZoneRange",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "timeZoneRange",
+      "rdfs:domain": {
+        "@id": "sup:Region"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:comment": "Used to derive support coverage hours"
+    },
+    {
+      "@id": "sup:repId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "repId",
+      "rdfs:domain": {
+        "@id": "sup:SalesRepresentative"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:comment": "CRM user ID",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b150",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:repId"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "_:b151",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:isActive"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:levelCode",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "levelCode",
+      "rdfs:domain": {
+        "@id": "sup:SeverityLevel"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "sup:permittedValue": [
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "rdfs:comment": "Canonical code",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b152",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:levelCode"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:levelRank",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "levelRank",
+      "rdfs:domain": {
+        "@id": "sup:SeverityLevel"
+      },
+      "rdfs:range": {
+        "@id": "xsd:integer"
+      },
+      "rdfs:comment": "1 = most severe. Lower rank = more urgent",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b153",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:levelRank"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:levelName",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "levelName",
+      "rdfs:domain": {
+        "@id": "sup:SeverityLevel"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:comment": "Canonical display name",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b154",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:levelName"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:definition",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "definition",
+      "rdfs:domain": {
+        "@id": "sup:SeverityLevel"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:comment": "The impact test that puts a ticket at this level",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b155",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:definition"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:slaName",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "slaName",
+      "rdfs:domain": {
+        "@id": "sup:SLA"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:comment": "E.g., \"Premium S1\"",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b156",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:slaName"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:targetResponseMinutes",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "targetResponseMinutes",
+      "rdfs:domain": {
+        "@id": "sup:SLA"
+      },
+      "rdfs:range": {
+        "@id": "xsd:integer"
+      },
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b157",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:targetResponseMinutes"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:targetResolutionMinutes",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "targetResolutionMinutes",
+      "rdfs:domain": {
+        "@id": "sup:SLA"
+      },
+      "rdfs:range": {
+        "@id": "xsd:integer"
+      },
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b158",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:targetResolutionMinutes"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:agentId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "agentId",
+      "rdfs:domain": {
+        "@id": "sup:SupportAgent"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:comment": "CRM user ID",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b159",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:agentId"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:tier",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "tier",
+      "rdfs:domain": {
+        "@id": "sup:SupportAgent"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "sup:permittedValue": [
+        "T1",
+        "T2",
+        "T3"
+      ],
+      "rdfs:comment": "Support tier, where the team is tiered"
+    },
+    {
+      "@id": "_:b160",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:isActive"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:tierCode",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "tierCode",
+      "rdfs:domain": {
+        "@id": "sup:SupportEntitlement"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "sup:permittedValue": [
+        "STANDARD",
+        "PREMIUM"
+      ],
+      "rdfs:comment": "Canonical code",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b161",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:tierCode"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:tierRank",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "tierRank",
+      "rdfs:domain": {
+        "@id": "sup:SupportEntitlement"
+      },
+      "rdfs:range": {
+        "@id": "xsd:integer"
+      },
+      "rdfs:comment": "Higher = more entitled. Standard 1, Premium 2",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b162",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:tierRank"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:grantsEscalationRight",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "grantsEscalationRight",
+      "rdfs:domain": {
+        "@id": "sup:SupportEntitlement"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      },
+      "rdfs:comment": "Whether the tier may demand escalation",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b163",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:grantsEscalationRight"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:responseTargetHours",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "responseTargetHours",
+      "rdfs:domain": {
+        "@id": "sup:SupportEntitlement"
+      },
+      "rdfs:range": {
+        "@id": "xsd:integer"
+      },
+      "rdfs:comment": "Varies by severity — see OQ-06"
+    },
+    {
+      "@id": "sup:ticketNumber",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "ticketNumber",
+      "rdfs:domain": {
+        "@id": "sup:Ticket"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:comment": "CRM case number",
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b164",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:ticketNumber"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:subject",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "subject",
+      "rdfs:domain": {
+        "@id": "sup:Ticket"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b165",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:subject"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "_:b166",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:status"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:openedAt",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "openedAt",
+      "rdfs:domain": {
+        "@id": "sup:Ticket"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "sup:isRequired": {
+        "@value": "true",
+        "@type": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "_:b167",
+      "@type": "owl:Restriction",
+      "owl:onProperty": {
+        "@id": "sup:openedAt"
+      },
+      "owl:minCardinality": {
+        "@value": "1",
+        "@type": "xsd:nonNegativeInteger"
+      }
+    },
+    {
+      "@id": "sup:resolvedAt",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "resolvedAt",
+      "rdfs:domain": {
+        "@id": "sup:Ticket"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "rdfs:comment": "Required when status is Resolved or Closed"
+    },
+    {
+      "@id": "sup:resolutionSummary",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "resolutionSummary",
+      "rdfs:domain": {
+        "@id": "sup:Ticket"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sup:CRM_SF",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CRM"
+      ],
+      "rdfs:label": "SF",
+      "skos:notation": "SF",
+      "sup:systemName": "Salesforce",
+      "sup:ticketTermUsed": "Case",
+      "sup:isAuthoritative": "Yes",
+      "sup:sourceOfThisEntry": "Example: Case is the platform's own object name"
+    },
+    {
+      "@id": "sup:CRM_ZD",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CRM"
+      ],
+      "rdfs:label": "ZD",
+      "skos:notation": "ZD",
+      "sup:systemName": "Zendesk",
+      "sup:ticketTermUsed": "Ticket",
+      "sup:isAuthoritative": "Yes",
+      "sup:sourceOfThisEntry": "Example: Ticket is the platform's own object name"
+    },
+    {
+      "@id": "sup:Region_EMEA",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Region"
+      ],
+      "rdfs:label": "Europe, Middle East and Africa",
+      "skos:notation": "EMEA"
+    },
+    {
+      "@id": "sup:Region_NA",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Region"
+      ],
+      "rdfs:label": "North America",
+      "skos:notation": "NA"
+    },
+    {
+      "@id": "sup:Region_APAC",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Region"
+      ],
+      "rdfs:label": "Asia Pacific",
+      "skos:notation": "APAC"
+    },
+    {
+      "@id": "sup:Region_LATAM",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Region"
+      ],
+      "rdfs:label": "Latin America",
+      "skos:notation": "LATAM"
+    },
+    {
+      "@id": "sup:SeverityLevel_S1",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:SeverityLevel"
+      ],
+      "rdfs:label": "S1",
+      "skos:notation": "S1",
+      "sup:rank": "1",
+      "sup:name": "System Down",
+      "skos:altLabel": [
+        "P1",
+        "Critical",
+        "Urgent",
+        "1"
+      ]
+    },
+    {
+      "@id": "sup:SeverityLevel_S2",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:SeverityLevel"
+      ],
+      "rdfs:label": "S2",
+      "skos:notation": "S2",
+      "sup:rank": "2",
+      "sup:name": "Work Stoppage",
+      "skos:altLabel": [
+        "P2",
+        "High",
+        "2"
+      ]
+    },
+    {
+      "@id": "sup:SeverityLevel_S3",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:SeverityLevel"
+      ],
+      "rdfs:label": "S3",
+      "skos:notation": "S3",
+      "sup:rank": "3",
+      "sup:name": "Medium",
+      "skos:altLabel": [
+        "P3",
+        "Medium",
+        "Normal",
+        "3"
+      ]
+    },
+    {
+      "@id": "sup:SeverityLevel_S4",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:SeverityLevel"
+      ],
+      "rdfs:label": "S4",
+      "skos:notation": "S4",
+      "sup:rank": "4",
+      "sup:name": "Low",
+      "skos:altLabel": [
+        "P4",
+        "Low",
+        "Minor",
+        "4"
+      ]
+    },
+    {
+      "@id": "sup:SupportEntitlement_Standard",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:SupportEntitlement"
+      ],
+      "rdfs:label": "Standard",
+      "skos:notation": "Standard",
+      "sup:tierCode": "STANDARD",
+      "skos:altLabel": [
+        "Basic",
+        "Included Support\" — usage unverified",
+        "see OQ-07"
+      ]
+    },
+    {
+      "@id": "sup:SupportEntitlement_Premium",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:SupportEntitlement"
+      ],
+      "rdfs:label": "Premium",
+      "skos:notation": "Premium",
+      "sup:tierCode": "PREMIUM",
+      "skos:altLabel": [
+        "Platinum Support\" for the products that use that naming — see sup:Product.usesPlatinumNaming. Same tier",
+        "different label."
+      ]
+    },
+    {
+      "@id": "sup:C-01",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-01",
+      "rdfs:label": "C-01",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "Every Account is located in exactly one Region.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-02",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-02",
+      "rdfs:label": "C-02",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "Every Account has exactly one SupportEntitlement at a given point in time.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-03",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-03",
+      "rdfs:label": "C-03",
+      "sup:enforcementLevel": "Retired",
+      "sup:constraintText": "hasSubRegion transitive and acyclic",
+      "sup:status": "Retired",
+      "sup:constraintNote": "Sub-regions removed — regions are flat."
+    },
+    {
+      "@id": "sup:C-04",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-04",
+      "rdfs:label": "C-04",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "Every Ticket has exactly one Account, exactly one SeverityLevel, and exactly one Product.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-05",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-05",
+      "rdfs:label": "C-05",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "A Ticket may carry a Jira reference only through an Escalation. A Jira ID on a ticket with no escalation record is invalid — the link exists but the reason, the author and the date have been lost.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-06",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-06",
+      "rdfs:label": "C-06",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "A Ticket with status = Escalated has at least one open Escalation.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-07",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-07",
+      "rdfs:label": "C-07",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "Every Account has exactly one SalesRepresentative.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-08",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-08",
+      "rdfs:label": "C-08",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "An Account may have a CSM only if isStrategic = true. Note the direction: strategic permits a CSM, it does not require one. A strategic account with no CSM is valid (awaiting assignment); a non-strategic account with a CSM is not.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-09",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-09",
+      "rdfs:label": "C-09",
+      "sup:enforcementLevel": "Soft",
+      "sup:constraintText": "An Account with accountStatus = Active holds at least one active License.",
+      "sup:status": "Active",
+      "sup:constraintNote": "Accounts marked active after everything lapsed."
+    },
+    {
+      "@id": "sup:C-10",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-10",
+      "rdfs:label": "C-10",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "Every Region is covered by at least one SalesRepresentative.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-11",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-11",
+      "rdfs:label": "C-11",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "The SupportEntitlement tier set is closed at STANDARD and PREMIUM. A value that does not resolve to one of these after alias resolution is a data error or an alias gap, never a new tier.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-12",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-12",
+      "rdfs:label": "C-12",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "grantsEscalationRight is true only for the PREMIUM tier.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-13",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-13",
+      "rdfs:label": "C-13",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "License.endDate, when present, is later than startDate.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-14",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-14",
+      "rdfs:label": "C-14",
+      "sup:enforcementLevel": "Soft",
+      "sup:constraintText": "A Ticket's product should be covered by an active License at the time it was opened.",
+      "sup:status": "Active",
+      "sup:constraintNote": "Out-of-maintenance support requests. Legitimate and common — flag, never reject."
+    },
+    {
+      "@id": "sup:C-15",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-15",
+      "rdfs:label": "C-15",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "Every Contact belongs to exactly one Account.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-16",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-16",
+      "rdfs:label": "C-16",
+      "sup:enforcementLevel": "Soft",
+      "sup:constraintText": "A Ticket's submitting Contact must belong to the Ticket's Account.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-17",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-17",
+      "rdfs:label": "C-17",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "Only a Contact with isSupportAuthorised = true may submit a Ticket.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-18",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-18",
+      "rdfs:label": "C-18",
+      "sup:enforcementLevel": "Retired",
+      "sup:constraintText": "Every Brand declares its three vocabulary properties",
+      "sup:status": "Retired",
+      "sup:constraintNote": "Brand removed; replaced by C-51 on Product and C-50 on CRM."
+    },
+    {
+      "@id": "sup:C-19",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-19",
+      "rdfs:label": "C-19",
+      "sup:enforcementLevel": "Retired",
+      "sup:constraintText": "Every ProductLine belongs to one Brand",
+      "sup:status": "Retired",
+      "sup:constraintNote": "Both classes removed."
+    },
+    {
+      "@id": "sup:C-20",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-20",
+      "rdfs:label": "C-20",
+      "sup:enforcementLevel": "Retired",
+      "sup:constraintText": "ProductLine naming agrees with its Brand",
+      "sup:status": "Retired",
+      "sup:constraintNote": "Both classes removed."
+    },
+    {
+      "@id": "sup:C-21",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-21",
+      "rdfs:label": "C-21",
+      "sup:enforcementLevel": "Retired",
+      "sup:constraintText": "Every Product belongs to one ProductLine",
+      "sup:status": "Retired",
+      "sup:constraintNote": "ProductLine removed; Product is now flat."
+    },
+    {
+      "@id": "sup:C-22",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-22",
+      "rdfs:label": "C-22",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "A Product with lifecycleStatus = EndOfLife must have an endOfLifeDate.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-23",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-23",
+      "rdfs:label": "C-23",
+      "sup:enforcementLevel": "Advisory",
+      "sup:constraintText": "Documentation describing an EndOfLife product is a retirement candidate.",
+      "sup:status": "Active",
+      "sup:constraintNote": "Feeds the KB evaluation process."
+    },
+    {
+      "@id": "sup:C-24",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-24",
+      "rdfs:label": "C-24",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "Ticket.resolvedAt is required when status is Resolved or Closed, and must not precede openedAt.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-25",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-25",
+      "rdfs:label": "C-25",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "The SeverityLevel set is closed at S1–S4. A product-specific value that does not resolve is an alias gap to record in 03-Vocabulary-and-Equivalence.md, not a fifth level.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-26",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-26",
+      "rdfs:label": "C-26",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "Severity comparisons, filters and sorts operate on levelRank only — never on the customer-facing label. \"High\" > \"Critical\" is true as a string comparison and false as a fact.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-27",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-27",
+      "rdfs:label": "C-27",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "Every Escalation produces exactly one JiraIssue.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-28",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-28",
+      "rdfs:label": "C-28",
+      "sup:enforcementLevel": "Advisory",
+      "sup:constraintText": "An Escalation of type Bug should have reproductionSteps.",
+      "sup:status": "Active",
+      "sup:constraintNote": "Escalations development will bounce back."
+    },
+    {
+      "@id": "sup:C-29",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-29",
+      "rdfs:label": "C-29",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "Only a SupportAgent may create an Escalation. Not a CSM, not a sales rep.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-30",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-30",
+      "rdfs:label": "C-30",
+      "sup:enforcementLevel": "Retired",
+      "sup:constraintText": "Role instances disjoint, persons not",
+      "sup:status": "Retired",
+      "sup:constraintNote": "Person removed; replaced by C-52."
+    },
+    {
+      "@id": "sup:C-31",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-31",
+      "rdfs:label": "C-31",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "A Ticket is assigned to at most one SupportAgent at a time.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-32",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-32",
+      "rdfs:label": "C-32",
+      "sup:enforcementLevel": "Soft",
+      "sup:constraintText": "An inactive SupportAgent must not hold open tickets.",
+      "sup:status": "Active",
+      "sup:constraintNote": "Tickets orphaned when someone leaves. Real, common, and invisible until a customer chases."
+    },
+    {
+      "@id": "sup:C-33",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-33",
+      "rdfs:label": "C-33",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "Every JiraIssue in scope traces back to at least one Escalation. Engineering-initiated issues are out of scope and must not be loaded.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-34",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-34",
+      "rdfs:label": "C-34",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "JiraIssue.isResolved is derived from a per-project status mapping, not from the raw status string. Jira projects use different workflows and \"Done\" is not universal.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-35",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-35",
+      "rdfs:label": "C-35",
+      "sup:enforcementLevel": "Soft",
+      "sup:constraintText": "A resolved JiraIssue with unresolved originating Tickets.",
+      "sup:status": "Active",
+      "sup:constraintNote": "The fix shipped and nobody told the customer. Probably the highest-value check here."
+    },
+    {
+      "@id": "sup:C-36",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-36",
+      "rdfs:label": "C-36",
+      "sup:enforcementLevel": "Retired",
+      "sup:constraintText": "Every JiraIssue owned by one DevelopmentTeam",
+      "sup:status": "Retired",
+      "sup:constraintNote": "DevelopmentTeam out of scope."
+    },
+    {
+      "@id": "sup:C-37",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-37",
+      "rdfs:label": "C-37",
+      "sup:enforcementLevel": "Retired",
+      "sup:constraintText": "Every Product has an owning DevelopmentTeam",
+      "sup:status": "Retired",
+      "sup:constraintNote": "DevelopmentTeam out of scope."
+    },
+    {
+      "@id": "sup:C-38",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-38",
+      "rdfs:label": "C-38",
+      "sup:enforcementLevel": "Retired",
+      "sup:constraintText": "AI-indexed articles must be public",
+      "sup:status": "Retired",
+      "sup:constraintNote": "AIAssistant deferred."
+    },
+    {
+      "@id": "sup:C-39",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-39",
+      "rdfs:label": "C-39",
+      "sup:enforcementLevel": "Retired",
+      "sup:constraintText": "Articles with no inbound link are orphans",
+      "sup:status": "Retired",
+      "sup:constraintNote": "Article link graph left to the KB evaluation tooling."
+    },
+    {
+      "@id": "sup:C-40",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-40",
+      "rdfs:label": "C-40",
+      "sup:enforcementLevel": "Advisory",
+      "sup:constraintText": "Documentation not reviewed in 24 months is a review candidate.",
+      "sup:status": "Active",
+      "sup:constraintNote": "Stale content agents are still trusting."
+    },
+    {
+      "@id": "sup:C-41",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-41",
+      "rdfs:label": "C-41",
+      "sup:enforcementLevel": "Retired",
+      "sup:constraintText": "No article may be its own ancestor",
+      "sup:status": "Retired",
+      "sup:constraintNote": "Article link graph removed."
+    },
+    {
+      "@id": "sup:C-42",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-42",
+      "rdfs:label": "C-42",
+      "sup:enforcementLevel": "Retired",
+      "sup:constraintText": "Every AIAssistant is grounded in ≥1 article",
+      "sup:status": "Retired",
+      "sup:constraintNote": "AIAssistant deferred."
+    },
+    {
+      "@id": "sup:C-43",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-43",
+      "rdfs:label": "C-43",
+      "sup:enforcementLevel": "Retired",
+      "sup:constraintText": "Article changes trigger re-indexing",
+      "sup:status": "Retired",
+      "sup:constraintNote": "AIAssistant deferred."
+    },
+    {
+      "@id": "sup:C-44",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-44",
+      "rdfs:label": "C-44",
+      "sup:enforcementLevel": "Retired",
+      "sup:constraintText": "Unemployed Person holds no active roles",
+      "sup:status": "Retired",
+      "sup:constraintNote": "Person removed."
+    },
+    {
+      "@id": "sup:C-45",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-45",
+      "rdfs:label": "C-45",
+      "sup:enforcementLevel": "Retired",
+      "sup:constraintText": "Every role instance held by exactly one Person",
+      "sup:status": "Retired",
+      "sup:constraintNote": "Person removed."
+    },
+    {
+      "@id": "sup:C-46",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-46",
+      "rdfs:label": "C-46",
+      "sup:enforcementLevel": "Soft",
+      "sup:constraintText": "An Account's SalesRepresentative must cover the Account's Region. This is \"assigned depending on the region\" made checkable — and it is the constraint most likely to fail after a territory reshuffle.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-47",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-47",
+      "rdfs:label": "C-47",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "An Account has at most one CustomerSuccessManager.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-48",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-48",
+      "rdfs:label": "C-48",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "Every Ticket is recorded in exactly one CRM.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-49",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-49",
+      "rdfs:label": "C-49",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "A fact from a CRM with isAuthoritative = false must not override a fact from an authoritative system for the same property. Mirrors lag.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-50",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-50",
+      "rdfs:label": "C-50",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "Every CRM declares ticketTermUsed. A system whose vocabulary is unknown cannot have its records safely translated.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-51",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-51",
+      "rdfs:label": "C-51",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "Every Product declares usesPlatinumNaming and severityTermUsed. A product whose support vocabulary is unknown cannot have its tickets safely compared against another product's.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-52",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-52",
+      "rdfs:label": "C-52",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "SupportAgent, SalesRepresentative and CustomerSuccessManager are pairwise disjoint. These are three distinct jobs in the support and commercial organization.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-53",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-53",
+      "rdfs:label": "C-53",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "Every License is bound to exactly one SupportEntitlement.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-54",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-54",
+      "rdfs:label": "C-54",
+      "sup:enforcementLevel": "Soft",
+      "sup:constraintText": "A License's SupportEntitlement should match its Account's SupportEntitlement.",
+      "sup:status": "Active",
+      "sup:constraintNote": "The model's own open question, made checkable. If accounts routinely hold licenses at different tiers, entitlement belongs on the license and C-02 is wrong. Flagging rather than rejecting means the first real violation tells us which model is right, instead of the data being quietly reshaped to fit our guess. See OQ-42."
+    },
+    {
+      "@id": "sup:C-55",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-55",
+      "rdfs:label": "C-55",
+      "sup:enforcementLevel": "Soft",
+      "sup:constraintText": "Every Documentation instance describes exactly one Product. Cross-product overview pages legitimately exist, so this flags rather than rejects.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-56",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-56",
+      "rdfs:label": "C-56",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "Every Ticket has exactly one SLA, determined by its SeverityLevel and Account's SupportEntitlement.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:C-57",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:Constraint"
+      ],
+      "sup:constraintId": "C-57",
+      "rdfs:label": "C-57",
+      "sup:enforcementLevel": "Hard",
+      "sup:constraintText": "A Ticket raised by a Partner must belong to an Account that the Partner represents.",
+      "sup:status": "Active"
+    },
+    {
+      "@id": "sup:CQ-01",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-01",
+      "rdfs:label": "CQ-01",
+      "sup:questionText": "Which accounts in a given region have open tickets?",
+      "sup:questionStatus": "Answerable"
+    },
+    {
+      "@id": "sup:CQ-02",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-02",
+      "rdfs:label": "CQ-02",
+      "sup:questionText": "How many open tickets does each entitlement tier have, by severity?",
+      "sup:questionStatus": "Conditional"
+    },
+    {
+      "@id": "sup:CQ-03",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-03",
+      "rdfs:label": "CQ-03",
+      "sup:questionText": "Which Premium accounts have tickets open longer than N days?",
+      "sup:questionStatus": "Conditional"
+    },
+    {
+      "@id": "sup:CQ-04",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-04",
+      "rdfs:label": "CQ-04",
+      "sup:questionText": "Which products is an account licensed for?",
+      "sup:questionStatus": "Answerable"
+    },
+    {
+      "@id": "sup:CQ-05",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-05",
+      "rdfs:label": "CQ-05",
+      "sup:questionText": "Who owns account X commercially, and is that assignment valid?",
+      "sup:questionStatus": "Answerable"
+    },
+    {
+      "@id": "sup:CQ-06",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-06",
+      "rdfs:label": "CQ-06",
+      "sup:questionText": "Which contacts at an account have raised tickets, and how many?",
+      "sup:questionStatus": "Conditional"
+    },
+    {
+      "@id": "sup:CQ-07",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-07",
+      "rdfs:label": "CQ-07",
+      "sup:questionText": "What does a given product and CRM call a ticket, a severity, and the premium tier?",
+      "sup:questionStatus": "Conditional"
+    },
+    {
+      "@id": "sup:CQ-08",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-08",
+      "rdfs:label": "CQ-08",
+      "sup:questionText": "Compare high-severity ticket volume across products.",
+      "sup:questionStatus": "Conditional"
+    },
+    {
+      "@id": "sup:CQ-09",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-09",
+      "rdfs:label": "CQ-09",
+      "sup:questionText": "Which tickets came from accounts with no active license for that product?",
+      "sup:questionStatus": "Answerable"
+    },
+    {
+      "@id": "sup:CQ-10",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-10",
+      "rdfs:label": "CQ-10",
+      "sup:questionText": "What is each agent's open ticket load, by severity?",
+      "sup:questionStatus": "Answerable"
+    },
+    {
+      "@id": "sup:CQ-11",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-11",
+      "rdfs:label": "CQ-11",
+      "sup:questionText": "Which Premium accounts are blocked on an unresolved Jira issue?",
+      "sup:questionStatus": "Conditional"
+    },
+    {
+      "@id": "sup:CQ-12",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-12",
+      "rdfs:label": "CQ-12",
+      "sup:questionText": "Which products have support load but thin documentation?",
+      "sup:questionStatus": "Answerable"
+    },
+    {
+      "@id": "sup:CQ-13",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-13",
+      "rdfs:label": "CQ-13",
+      "sup:questionText": "Which licenses expire in 90 days for accounts with open tickets?",
+      "sup:questionStatus": "Answerable"
+    },
+    {
+      "@id": "sup:CQ-14",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-14",
+      "rdfs:label": "CQ-14",
+      "sup:questionText": "Which strategic accounts in region R have no CSM?",
+      "sup:questionStatus": "Answerable"
+    },
+    {
+      "@id": "sup:CQ-15",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-15",
+      "rdfs:label": "CQ-15",
+      "sup:questionText": "How many tickets did each agent escalate, and at what severity?",
+      "sup:questionStatus": "Answerable"
+    },
+    {
+      "@id": "sup:CQ-16",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-16",
+      "rdfs:label": "CQ-16",
+      "sup:questionText": "For product P, which agents specialise in it and what docs exist?",
+      "sup:questionStatus": "Answerable"
+    },
+    {
+      "@id": "sup:CQ-17",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-17",
+      "rdfs:label": "CQ-17",
+      "sup:questionText": "Which unresolved bugs have the highest-severity tickets attached?",
+      "sup:questionStatus": "Answerable"
+    },
+    {
+      "@id": "sup:CQ-18",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-18",
+      "rdfs:label": "CQ-18",
+      "sup:questionText": "Who escalated issue X, when, and why?",
+      "sup:questionStatus": "Answerable"
+    },
+    {
+      "@id": "sup:CQ-19",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-19",
+      "rdfs:label": "CQ-19",
+      "sup:questionText": "How many accounts are waiting on Jira issue X, and who owns them?",
+      "sup:questionStatus": "Conditional"
+    },
+    {
+      "@id": "sup:CQ-20",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-20",
+      "rdfs:label": "CQ-20",
+      "sup:questionText": "Which tickets were opened after the contact used the AI assistant?",
+      "sup:questionStatus": "Retired",
+      "sup:questionNote": "AIAssistant deferred."
+    },
+    {
+      "@id": "sup:CQ-21",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-21",
+      "rdfs:label": "CQ-21",
+      "sup:questionText": "Which documentation articles are orphans?",
+      "sup:questionStatus": "Retired",
+      "sup:questionNote": "Article link graph left to the KB evaluation tooling."
+    },
+    {
+      "@id": "sup:CQ-22",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-22",
+      "rdfs:label": "CQ-22",
+      "sup:questionText": "What is the full commercial picture of account X?",
+      "sup:questionStatus": "Answerable"
+    },
+    {
+      "@id": "sup:CQ-23",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-23",
+      "rdfs:label": "CQ-23",
+      "sup:questionText": "Do Premium tickets get escalated faster than Standard?",
+      "sup:questionStatus": "Conditional"
+    },
+    {
+      "@id": "sup:CQ-24",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-24",
+      "rdfs:label": "CQ-24",
+      "sup:questionText": "Which documentation resolves the most tickets?",
+      "sup:questionStatus": "Answerable"
+    },
+    {
+      "@id": "sup:CQ-25",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-25",
+      "rdfs:label": "CQ-25",
+      "sup:questionText": "What share of a product's public articles ground the assistant?",
+      "sup:questionStatus": "Retired",
+      "sup:questionNote": "AIAssistant deferred."
+    },
+    {
+      "@id": "sup:CQ-26",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-26",
+      "rdfs:label": "CQ-26",
+      "sup:questionText": "Which topics generate high-severity tickets but have no documentation?",
+      "sup:questionStatus": "Answerable"
+    },
+    {
+      "@id": "sup:CQ-27",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-27",
+      "rdfs:label": "CQ-27",
+      "sup:questionText": "What is the escalation rate by tier and severity?",
+      "sup:questionStatus": "Conditional"
+    },
+    {
+      "@id": "sup:CQ-28",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-28",
+      "rdfs:label": "CQ-28",
+      "sup:questionText": "Which dev teams carry the most escalations?",
+      "sup:questionStatus": "Retired",
+      "sup:questionNote": "DevelopmentTeam out of scope."
+    },
+    {
+      "@id": "sup:CQ-29",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-29",
+      "rdfs:label": "CQ-29",
+      "sup:questionText": "Do any accounts hold licenses at a different tier than the account?",
+      "sup:questionStatus": "Conditional"
+    },
+    {
+      "@id": "sup:CQ-30",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-30",
+      "rdfs:label": "CQ-30",
+      "sup:questionText": "Which support agents have the most SLA breaches?",
+      "sup:questionStatus": "Answerable"
+    },
+    {
+      "@id": "sup:CQ-31",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-31",
+      "rdfs:label": "CQ-31",
+      "sup:questionText": "What is the average SLA resolution time for Premium tickets?",
+      "sup:questionStatus": "Conditional"
+    },
+    {
+      "@id": "sup:CQ-32",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:CompetencyQuestion"
+      ],
+      "sup:questionId": "CQ-32",
+      "rdfs:label": "CQ-32",
+      "sup:questionText": "Which partners raised the most tickets this month?",
+      "sup:questionStatus": "Answerable"
+    },
+    {
+      "@id": "sup:OQ-01",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-01",
+      "rdfs:label": "OQ-01",
+      "sup:questionText": "Does the Contact class exist?",
+      "sup:questionStatus": "Resolved"
+    },
+    {
+      "@id": "sup:OQ-02",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-02",
+      "rdfs:label": "OQ-02",
+      "sup:questionText": "Person vs Contact overlap.",
+      "sup:questionStatus": "Resolved"
+    },
+    {
+      "@id": "sup:OQ-03",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-03",
+      "rdfs:label": "OQ-03",
+      "sup:questionText": "How do we de-duplicate accounts across CRM instances?",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-04",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-04",
+      "rdfs:label": "OQ-04",
+      "sup:questionText": "Are account hierarchies needed?",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-05",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-05",
+      "rdfs:label": "OQ-05",
+      "sup:questionText": "Is Region a property of the account or the license?",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-06",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-06",
+      "rdfs:label": "OQ-06",
+      "sup:questionText": "Response targets by tier and severity.",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-07",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-07",
+      "rdfs:label": "OQ-07",
+      "sup:questionText": "Which products sell Platinum rather than Premium?",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-08",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-08",
+      "rdfs:label": "OQ-08",
+      "sup:questionText": "Are there tiers above Premium?",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-09",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-09",
+      "rdfs:label": "OQ-09",
+      "sup:questionText": "How do we represent tickets from lapsed accounts?",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-10",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-10",
+      "rdfs:label": "OQ-10",
+      "sup:questionText": "Do trial licenses carry support entitlement?",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-11",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-11",
+      "rdfs:label": "OQ-11",
+      "sup:questionText": "Anonymous chatbot sessions",
+      "sup:questionStatus": "Retired",
+      "sup:questionNote": "AIAssistant deferred — see OQ-46."
+    },
+    {
+      "@id": "sup:OQ-12",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-12",
+      "rdfs:label": "OQ-12",
+      "sup:questionText": "Are Brand and ProductLine two levels or one?",
+      "sup:questionStatus": "Resolved"
+    },
+    {
+      "@id": "sup:OQ-13",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-13",
+      "rdfs:label": "OQ-13",
+      "sup:questionText": "Can a product's vocabulary change over time?",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-14",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-14",
+      "rdfs:label": "OQ-14",
+      "sup:questionText": "Is the product list the right granularity?",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-15",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-15",
+      "rdfs:label": "OQ-15",
+      "sup:questionText": "Product versions are not modelled.",
+      "sup:questionStatus": "Blocking"
+    },
+    {
+      "@id": "sup:OQ-16",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-16",
+      "rdfs:label": "OQ-16",
+      "sup:questionText": "Ticket assignment history is not modelled.",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-17",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-17",
+      "rdfs:label": "OQ-17",
+      "sup:questionText": "Are there ticket types worth modelling explicitly?",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-18",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-18",
+      "rdfs:label": "OQ-18",
+      "sup:questionText": "Ticket number collisions across CRM instances.",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-19",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-19",
+      "rdfs:label": "OQ-19",
+      "sup:questionText": "Are the severity value mappings correct?",
+      "sup:questionStatus": "Resolved"
+    },
+    {
+      "@id": "sup:OQ-20",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-20",
+      "rdfs:label": "OQ-20",
+      "sup:questionText": "Does severity change over a ticket's life?",
+      "sup:questionStatus": "Blocking"
+    },
+    {
+      "@id": "sup:OQ-21",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-21",
+      "rdfs:label": "OQ-21",
+      "sup:questionText": "Severity escalation and management escalation.",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-22",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-22",
+      "rdfs:label": "OQ-22",
+      "sup:questionText": "How are rejected escalations represented?",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-23",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-23",
+      "rdfs:label": "OQ-23",
+      "sup:questionText": "Where does agent product specialisation come from?",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-24",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-24",
+      "rdfs:label": "OQ-24",
+      "sup:questionText": "Jira issue hierarchies are not modelled.",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-25",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-25",
+      "rdfs:label": "OQ-25",
+      "sup:questionText": "Should fixVersion link to a real version entity?",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-26",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-26",
+      "rdfs:label": "OQ-26",
+      "sup:questionText": "Team-to-Jira-project mapping",
+      "sup:questionStatus": "Retired",
+      "sup:questionNote": "DevelopmentTeam out of scope — see OQ-43."
+    },
+    {
+      "@id": "sup:OQ-27",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-27",
+      "rdfs:label": "OQ-27",
+      "sup:questionText": "Team membership not modelled",
+      "sup:questionStatus": "Retired",
+      "sup:questionNote": "DevelopmentTeam out of scope."
+    },
+    {
+      "@id": "sup:OQ-28",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-28",
+      "rdfs:label": "OQ-28",
+      "sup:questionText": "Are AI grounding chunks a modelled thing?",
+      "sup:questionStatus": "Retired",
+      "sup:questionNote": "AIAssistant deferred."
+    },
+    {
+      "@id": "sup:OQ-29",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-29",
+      "rdfs:label": "OQ-29",
+      "sup:questionText": "Article versioning and localisation.",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-30",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-30",
+      "rdfs:label": "OQ-30",
+      "sup:questionText": "Is \"the agent used this article\" actually captured?",
+      "sup:questionStatus": "Blocking"
+    },
+    {
+      "@id": "sup:OQ-31",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-31",
+      "rdfs:label": "OQ-31",
+      "sup:questionText": "Is the deflection derivation rule agreed?",
+      "sup:questionStatus": "Retired",
+      "sup:questionNote": "AIAssistant deferred."
+    },
+    {
+      "@id": "sup:OQ-32",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-32",
+      "rdfs:label": "OQ-32",
+      "sup:questionText": "Should the assistant conversation be its own class?",
+      "sup:questionStatus": "Retired",
+      "sup:questionNote": "AIAssistant deferred."
+    },
+    {
+      "@id": "sup:OQ-33",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-33",
+      "rdfs:label": "OQ-33",
+      "sup:questionText": "Cross-system user resolution.",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-34",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-34",
+      "rdfs:label": "OQ-34",
+      "sup:questionText": "Is the renewal owner always the account owner?",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-35",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-35",
+      "rdfs:label": "OQ-35",
+      "sup:questionText": "Can an account be owned by a rep outside its region?",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-36",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-36",
+      "rdfs:label": "OQ-36",
+      "sup:questionText": "Is TAM the same role as CSM?",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-37",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-37",
+      "rdfs:label": "OQ-37",
+      "sup:questionText": "What determines isStrategic?",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-38",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-38",
+      "rdfs:label": "OQ-38",
+      "sup:questionText": "What are the actual CRM systems?",
+      "sup:questionStatus": "Resolved"
+    },
+    {
+      "@id": "sup:OQ-39",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-39",
+      "rdfs:label": "OQ-39",
+      "sup:questionText": "Vocabulary is anchored in two places — what if they disagree?",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-40",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-40",
+      "rdfs:label": "OQ-40",
+      "sup:questionText": "Ticket-to-ticket relationships are not modelled.",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-41",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-41",
+      "rdfs:label": "OQ-41",
+      "sup:questionText": "Regions are flat by decision.",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-42",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-42",
+      "rdfs:label": "OQ-42",
+      "sup:questionText": "Entitlement is bound to both the Account and the License.",
+      "sup:questionStatus": "Blocking"
+    },
+    {
+      "@id": "sup:OQ-43",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-43",
+      "rdfs:label": "OQ-43",
+      "sup:questionText": "Engineering ownership is out of scope.",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-44",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-44",
+      "rdfs:label": "OQ-44",
+      "sup:questionText": "Severity naming was described as varying by brand.",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-45",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-45",
+      "rdfs:label": "OQ-45",
+      "sup:questionText": "Link-graph analysis belongs to the KB tooling.",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-46",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-46",
+      "rdfs:label": "OQ-46",
+      "sup:questionText": "The AI assistant is deferred, not rejected.",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-47",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-47",
+      "rdfs:label": "OQ-47",
+      "sup:questionText": "There is no Person layer.",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-48",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-48",
+      "rdfs:label": "OQ-48",
+      "sup:questionText": "How are business hours vs calendar hours calculated for SLAs?",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-49",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-49",
+      "rdfs:label": "OQ-49",
+      "sup:questionText": "Are there cases where a single ticket is co-managed by Partner and Account Contacts?",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-50",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-50",
+      "rdfs:label": "OQ-50",
+      "sup:questionText": "Enumerate CRM instances and populate ticketTermUsed.",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:OQ-51",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:OpenQuestion"
+      ],
+      "sup:questionId": "OQ-51",
+      "rdfs:label": "OQ-51",
+      "sup:questionText": "Does live CRM data conform to the four-level standard?",
+      "sup:questionStatus": "Open"
+    },
+    {
+      "@id": "sup:EQ-01",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:EquivalenceDeclaration"
+      ],
+      "sup:equivalenceId": "EQ-01",
+      "rdfs:label": "EQ-01: Ticket ≡ Case",
+      "sup:canonicalTerm": {
+        "@id": "sup:Ticket"
+      },
+      "sup:equivalentLabel": [
+        "Case",
+        "Incident",
+        "SR",
+        "Service Request"
+      ],
+      "sup:variesBy": "CRM system",
+      "sup:anchorProperty": "sup:CRM.ticketTermUsed",
+      "sup:equivalenceStatus": "Canonical. Per-system mapping populated per organization in Entities/CRM.md (OQ-50). Example: Salesforce → Case, Zendesk → Ticket."
+    },
+    {
+      "@id": "sup:EQ-02",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:EquivalenceDeclaration"
+      ],
+      "sup:equivalenceId": "EQ-02",
+      "rdfs:label": "EQ-02: Premium Support ≡ Platinum Support",
+      "sup:canonicalTerm": {
+        "@id": "sup:SupportEntitlement"
+      },
+      "sup:equivalentLabel": [
+        "Platinum",
+        "Platinum Support"
+      ],
+      "sup:variesBy": "Product",
+      "sup:anchorProperty": "sup:Product.usesPlatinumNaming",
+      "sup:equivalenceStatus": "Canonical. Which products use Platinum naming is not populated (OQ-07). Interim rule, 2026-08-20: treat Platinum and Premium as synonyms unconditionally — either label resolves to tierCode = PREMIUM regardless of product. Tier counts are correct under this rule; \"which label should this product be showing?\" is not answerable until OQ-07 closes."
+    },
+    {
+      "@id": "sup:EQ-03",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:EquivalenceDeclaration"
+      ],
+      "sup:equivalenceId": "EQ-03",
+      "rdfs:label": "EQ-03: Severity ≡ Priority",
+      "sup:canonicalTerm": {
+        "@id": "sup:SeverityLevel"
+      },
+      "sup:equivalentLabel": [
+        "Priority",
+        "Pri",
+        "Sev",
+        "Impact"
+      ],
+      "sup:variesBy": "Product",
+      "sup:anchorProperty": "sup:Product.severityTermUsed",
+      "sup:equivalenceStatus": "Canonical for the term split. Value-level standard set 2026-08-20 (OQ-19): four levels, S1–S4, uniform across all products, definitions on SeverityLevel. Whether live CRM data conforms is still unverified (OQ-51)."
+    },
+    {
+      "@id": "sup:EQ-04",
+      "@type": [
+        "owl:NamedIndividual",
+        "sup:EquivalenceDeclaration"
+      ],
+      "sup:equivalenceId": "EQ-04",
+      "rdfs:label": "EQ-04: \"Ticket\" is ambiguous across support and development",
+      "sup:canonicalTerm": [
+        {
+          "@id": "sup:Ticket"
+        },
+        {
+          "@id": "sup:JiraIssue"
+        }
+      ],
+      "sup:equivalenceStatus": "Disjoint — see 04-Constraints-and-Rules.md"
+    },
+    {
+      "@id": "sup:canonicalTerm",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": "canonicalTerm"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+
+# Secrets
+.env
+
+# Customer data. Never commit any of it.
+data/in/*
+data/out/*
+!data/in/.gitkeep
+!data/out/.gitkeep
+vault/
+Ticket examples/
+Draft Templates/
+*.rar
+*.zip
+
+# Local tooling
+.claude/
+.vscode/
+.idea/
+
+# Local-only work kept out of the public repo
+private/

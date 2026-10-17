@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ticketmask"
+version = "0.2.0"
+description = "Reversible PII masking for support ticket data, grounded on the support ontology"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Alonso Mendez" }]
+requires-python = ">=3.11"
+dependencies = [
+    "presidio-analyzer==2.2.364",
+    "presidio-anonymizer==2.2.364",
+    "spacy==3.8.13",
+    "cryptography>=48.0.1",
+]
+
+[project.optional-dependencies]
+# Local operator UI only. Never part of the masking path, so a client
+# deployment can install the library without it.
+app = ["streamlit>=1.40"]
+
+[project.scripts]
+ticketmask = "ticketmask.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+ticketmask = ["py.typed"]

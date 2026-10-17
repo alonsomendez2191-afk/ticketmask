@@ -1,0 +1,8 @@
+# sup:Product - kept, never masked. Replaces the built-in list, so include third-party names too.
+ExampleAnalytics
+ExampleDataWarehouse
+ExampleDesigner
+Windows Server
+SQL Server
+Chrome
+Edge

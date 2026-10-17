@@ -1,0 +1,8 @@
+# Customer sites, from CRM account addresses - deliberately partial
+Seattle
+Portland
+Austin
+Melbourne
+Rotterdam
+Osaka
+Madrid

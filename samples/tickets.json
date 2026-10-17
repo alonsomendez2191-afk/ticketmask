@@ -1,0 +1,222 @@
+[
+  {
+    "ticket_id": "CS-10231",
+    "created_at": "2026-09-01 08:14",
+    "status": "Resolved",
+    "product": "ExampleAnalytics",
+    "severity": "S2",
+    "region": "North America",
+    "subject": "Dashboard export fails with timeout",
+    "description": "Hi, this is Maria Gonzalez from Contoso. Since upgrading ExampleAnalytics to 9.4 our scheduled PDF exports time out after 300 seconds. Account ACCT-448812, Premium Support. Please call me on +1 (206) 555-0143.\nThanks,\nMaria",
+    "comments": "Sam Rivera: Reproduced on 9.4. Increasing the render timeout in the server config resolves it. Sent steps to maria.gonzalez@contoso.com.\nMaria Gonzalez: Confirmed fixed, thank you!"
+  },
+  {
+    "ticket_id": "CS-10232",
+    "created_at": "2026-09-01 02:31",
+    "status": "Resolved",
+    "product": "ExampleDataWarehouse",
+    "severity": "S1",
+    "region": "North America",
+    "subject": "Production load jobs down after failover",
+    "description": "URGENT - all nightly loads failing since the DB failover at 02:10. Server 10.20.30.41 no longer accepts connections from the scheduler host 10.20.30.17. Error: ORA-12541: TNS:no listener. Raised by Robert Chen, Fabrikam DBA team, cell 415-555-0182.",
+    "comments": "atanaka: Escalated to engineering as ENG-4471. Listener was bound to the old node.\natanaka: Workaround: point the connection string at the cluster VIP. Customer confirmed loads resumed."
+  },
+  {
+    "ticket_id": "CS-10240",
+    "created_at": "2026-09-02 11:05",
+    "status": "Resolved",
+    "product": "ExampleAnalytics",
+    "severity": "S4",
+    "region": "EMEA",
+    "subject": "Invoice charged twice",
+    "description": "Hello, we were billed twice for the March renewal. The card below was charged on both 03/02 and 03/04.\nCard: 4111 1111 1111 1111\nBilling contact: Sven Lindqvist, Northwind Traders, Rotterdam",
+    "comments": "Lucia Ferrari: Refund of the duplicate charge raised with finance. Please never send full card numbers by email."
+  },
+  {
+    "ticket_id": "CS-10244",
+    "created_at": "2026-09-03 15:40",
+    "status": "Resolved",
+    "product": "ExampleAnalytics",
+    "severity": "S3",
+    "region": "North America",
+    "subject": "Bulk user import rejects rows",
+    "description": "Import failing with 'invalid header'. First rows of the file:\n\nname,email,phone,site\nDana Whitfield,dwhitfield@tailspintoys.com,503-555-0110,Portland\nNgozi Okafor,nokafor@tailspintoys.com,503-555-0127,Portland\nMateo Silva,msilva@tailspintoys.com,512-555-0199,Austin\n\nSent by Dana Whitfield, Tailspin Toys.",
+    "comments": "Olu Adeyemi: The file is UTF-8 with a BOM; the importer expects plain UTF-8. Re-saving without the BOM fixes the header check."
+  },
+  {
+    "ticket_id": "CS-10251",
+    "created_at": "2026-09-04 07:58",
+    "status": "Resolved",
+    "product": "ExampleAnalytics",
+    "severity": "S2",
+    "region": "North America",
+    "subject": "cant log in - urgent",
+    "description": "hi its jennifer o'malley again from woodgrove bank, still cant log in to ExampleAnalytics. tried resetting pw 3 times. my cell is 555.884.2210. this is urgent, our CFO Arjun Mehta needs the board report today",
+    "comments": "gkim: Account was locked after 5 failed attempts. Unlocked from the admin console and sent a reset link to jomalley@woodgrovebank.com."
+  },
+  {
+    "ticket_id": "CS-10258",
+    "created_at": "2026-09-05 22:17",
+    "status": "Resolved",
+    "product": "ExampleDataWarehouse",
+    "severity": "S1",
+    "region": "APAC",
+    "subject": "Replication stalled after DR failover test",
+    "description": "Raised by partner Litware Consulting on behalf of Adventure Works. Platinum entitlement. Region: APAC. Site: Melbourne data centre.\nReplication between the primary and DR warehouse stalled after the failover test. Lag is at 14 hours.",
+    "comments": "Sam Rivera: The replication slot was dropped during failover. Recreated it; lag back to zero within 40 minutes.\nSam Rivera: CSM Helen Novak informed."
+  },
+  {
+    "ticket_id": "CS-10262",
+    "created_at": "2026-09-08 09:30",
+    "status": "Resolved",
+    "product": "ExampleDesigner",
+    "severity": "S3",
+    "region": "APAC",
+    "subject": "License activation fails after hardware refresh",
+    "description": "We moved ExampleDesigner to a new workstation and activation fails with error LIC-209. Key: 7KQ2M-PX9RT-44LZW-B83NC-QJ6VD. The old machine, SN: CN0X7H2K4R, has been decommissioned.\n-- Kenji Watanabe, Proseware, Osaka",
+    "comments": "Olu Adeyemi: Released the old activation from the licensing portal. Customer re-activated successfully."
+  },
+  {
+    "ticket_id": "CS-10270",
+    "created_at": "2026-09-09 13:12",
+    "status": "Resolved",
+    "product": "ExampleAnalytics",
+    "severity": "S2",
+    "region": "EMEA",
+    "subject": "RE: RE: SSO redirect loop",
+    "description": "> On Tue, Priya Raghunathan <priya.r@lucernepublishing.com> wrote:\n> Users get stuck in a redirect loop between our IdP and the portal at https://analytics.lucernepublishing.com/login.\n> --\n> Priya Raghunathan | Director of IT | Lucerne Publishing\n> M: +44 20 7946 0958\n\nAdding Chloé Martin from our identity team.",
+    "comments": "atanaka: The SAML ACS URL still pointed at the old hostname. Updated it in the IdP; loop resolved."
+  },
+  {
+    "ticket_id": "CS-10277",
+    "created_at": "2026-09-10 10:45",
+    "status": "Resolved",
+    "product": "ExampleDataWarehouse",
+    "severity": "S3",
+    "region": "EMEA",
+    "subject": "Collector cannot register from new subnet",
+    "description": "The collector service fails to register from the new VLAN. NIC MAC 00:1A:2B:3C:4D:5E, IPv6 2001:db8:85a3::8a2e:370:7334. Firewall change REQ-20931 is already approved. Contact Zanele Dube at Coho Winery (Cape Town office).",
+    "comments": "gkim: Registration uses IPv4 only in this version. Enabled dual-stack in the collector config."
+  },
+  {
+    "ticket_id": "CS-10283",
+    "created_at": "2026-09-14 03:20",
+    "status": "Resolved",
+    "product": "ExampleDataWarehouse",
+    "severity": "S2",
+    "region": "North America",
+    "subject": "Webhook calls returning 401",
+    "description": "Our integration started failing overnight. Log excerpt:\n2026-09-14 03:12:44 ERROR POST /api/v2/hooks 401 Unauthorized api_key=Q2hhbmdlTWVQbGVhc2U4ODQy user=svc-integration@wideworldimporters.com\n\nRaised by Wei Zhang, Wide World Importers.",
+    "comments": "Sam Rivera: The key was rotated by the customer's admin and the integration still had the old one. Updated and verified."
+  },
+  {
+    "ticket_id": "CS-10289",
+    "created_at": "2026-09-15 16:02",
+    "status": "Closed",
+    "product": "ExampleAnalytics",
+    "severity": "S4",
+    "region": "EMEA",
+    "subject": "Renewal quote and seat count",
+    "description": "Can Greg Tan send an updated quote? Account number: ALP-0099812. We are moving from Standard to Premium Support and adding 40 seats.\n-- Liam O'Connor, Procurement, Alpine Ski House",
+    "comments": "Tomás Ortega: Looping in Greg for the quote. Premium includes 24x7 S1 coverage."
+  },
+  {
+    "ticket_id": "CS-10294",
+    "created_at": "2026-09-16 08:37",
+    "status": "Resolved",
+    "product": "ExampleDataWarehouse",
+    "severity": "S2",
+    "region": "North America",
+    "subject": "Appliance RMA after power outage",
+    "description": "Our appliance (Serial Number: EXA-7731-0042-K) fails POST after a power outage. Please ship the replacement to:\nFatima Al-Sayed\nFourth Coffee\n1200 Harbor Avenue, Suite 400\nSeattle, WA 98101",
+    "comments": "oadeyemi: RMA approved. Replacement ships tomorrow."
+  },
+  {
+    "ticket_id": "CS-10301",
+    "created_at": "2026-09-17 12:20",
+    "status": "Resolved",
+    "product": "ExampleAnalytics",
+    "severity": "S4",
+    "region": "EMEA",
+    "subject": "Direct debit failing",
+    "description": "Please update our direct debit to IBAN GB82 WEST 1234 5698 7654 32. Finance contact: Hannah Brooks, ap@treyresearch.net, +44 161 496 0753. Trey Research.",
+    "comments": "Lucia Ferrari: Forwarded to billing. Bank details should go through the secure billing portal, not a support ticket."
+  },
+  {
+    "ticket_id": "CS-10305",
+    "created_at": "2026-09-18 09:00",
+    "status": "Resolved",
+    "product": "ExampleDataWarehouse",
+    "severity": "S3",
+    "region": "EMEA",
+    "subject": "Scheduler skips jobs at DST change",
+    "description": "Jobs scheduled between 02:00 and 03:00 are skipped on the spring DST change. Looks like ENG-3302. Running ExampleDataWarehouse 10.2 on Windows Server 2022 with SQL Server 2019. Severity 3, Standard Support, EMEA.",
+    "comments": "Aiko Tanaka: Known issue ENG-3302, fixed in 10.3. Workaround: schedule jobs outside the DST window."
+  },
+  {
+    "ticket_id": "CS-10312",
+    "created_at": "2026-09-21 14:48",
+    "status": "Resolved",
+    "product": "ExampleAnalytics",
+    "severity": "S3",
+    "region": "EMEA",
+    "subject": "Reports show the wrong currency",
+    "description": "Hola, reports in ExampleAnalytics show USD instead of EUR for our users in Madrid. Locale is es-ES. Contact: Lucía Hernández, lhernandez@blueyonderairlines.com, Blue Yonder Airlines.",
+    "comments": "Grace Kim: Currency comes from the data source locale, not the browser. Set the connection locale to es-ES."
+  },
+  {
+    "ticket_id": "CS-10318",
+    "created_at": "2026-09-22 10:10",
+    "status": "Resolved",
+    "product": "ExampleDesigner",
+    "severity": "S2",
+    "region": "EMEA",
+    "subject": "ExampleDesigner crashes on startup",
+    "description": "Crash log:\nFaulting module path: C:\\Users\\kjohansson\\AppData\\Local\\ExampleDesigner\\plugins\\render.dll\nRepository connection: db01.relecloud.internal:5432\n\nReported by Karin Johansson, Relecloud.",
+    "comments": "gkim: render.dll is from a third-party plugin. Removing it from the plugins folder fixes startup."
+  },
+  {
+    "ticket_id": "CS-10325",
+    "created_at": "2026-09-24 06:55",
+    "status": "Resolved",
+    "product": "ExampleAnalytics",
+    "severity": "S3",
+    "region": "APAC",
+    "subject": "Installer download stops at 99%",
+    "description": "Download from the portal stops at 99%. Tried Chrome and Edge. Jack Nguyen, Wingtip Toys, Melbourne VIC, ph (02) 5550 1234.",
+    "comments": "Sam Rivera: CDN edge issue in the region, resolved by the hosting provider. Sent a mirror link."
+  },
+  {
+    "ticket_id": "CS-10331",
+    "created_at": "2026-09-25 11:30",
+    "status": "Pending",
+    "product": "ExampleDataWarehouse",
+    "severity": "S4",
+    "region": "North America",
+    "subject": "Sizing guidance for expansion",
+    "description": "Our consultant from Lamna Solutions recommended moving to the clustered deployment. VanArsdel expects data volume to triple next year. Can someone review the sizing? -- Noah Fischer, noah.fischer@vanarsdel.com",
+    "comments": "Helen Novak: Scheduling a sizing review with the partner and Noah next week."
+  },
+  {
+    "ticket_id": "CS-10337",
+    "created_at": "2026-09-28 17:25",
+    "status": "Resolved",
+    "product": "ExampleAnalytics",
+    "severity": "S3",
+    "region": "North America",
+    "subject": "Password reset email never arrives",
+    "description": "Olivia Bennett at Margie's Travel is not receiving reset emails at olivia.bennett@margiestravel.com. Checked spam.",
+    "comments": "atanaka: Their mail gateway was blocking our sending domain. Customer IT allow-listed it and the reset worked."
+  },
+  {
+    "ticket_id": "CS-10342",
+    "created_at": "2026-09-30 13:03",
+    "status": "Resolved",
+    "product": "ExampleDataWarehouse",
+    "severity": "S2",
+    "region": "North America",
+    "subject": "Load fails on rows with accented names",
+    "description": "Loads from the HR feed fail on rows like:\n  emp_id=88213 name=\"Renée Dubois\" dept=Finance\nError: invalid byte sequence for encoding UTF8: 0xe9. Raised by Ethan Park, Humongous Insurance, ticket ref CASE-118734.",
+    "comments": "Olu Adeyemi: The source file is Windows-1252. Set the file encoding on the load to WIN1252."
+  }
+]

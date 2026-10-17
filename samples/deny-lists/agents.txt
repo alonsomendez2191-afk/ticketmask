@@ -1,0 +1,9 @@
+# sup:SupportAgent - from the helpdesk directory (names and handles)
+Sam Rivera
+srivera
+Aiko Tanaka
+atanaka
+Olu Adeyemi
+oadeyemi
+Grace Kim
+gkim

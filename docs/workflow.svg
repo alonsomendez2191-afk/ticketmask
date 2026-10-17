@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1192 300" width="1192" height="300" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" role="img" aria-label="ticketmask workflow">
+  <title>ticketmask workflow</title>
+  <style>
+    .bg{fill:#ffffff}
+    .local{fill:#edf3fb;stroke:#c3d4ec}
+    .ext{fill:#f4f0fa;stroke:#d3c6e8}
+    .box{fill:#ffffff;stroke:#b9b9b4;stroke-width:1.2}
+    .in{fill:#f6f6f3;stroke:#b9b9b4;stroke-width:1.2;stroke-dasharray:4 3}
+    .key{fill:#ffffff;stroke:#b5562b;stroke-width:1.8}
+    .t{fill:#1a1a19;font-size:15px;font-weight:600}
+    .s{fill:#6b6b68;font-size:11.5px}
+    .z{fill:#8a8a85;font-size:11px;letter-spacing:.12em;font-weight:600}
+    .a{stroke:#7b7b77;stroke-width:1.4;fill:none}
+    .ah{fill:#7b7b77}
+    @media (prefers-color-scheme:dark){
+      .bg{fill:#191918}
+      .local{fill:#1b2330;stroke:#34465f}
+      .ext{fill:#251f30;stroke:#463a5c}
+      .box{fill:#212120;stroke:#55554f}
+      .in{fill:#1e1e1d;stroke:#55554f}
+      .key{fill:#212120;stroke:#e08a5f}
+      .t{fill:#eceae4} .s{fill:#9a9a95} .z{fill:#8a8a85}
+      .a{stroke:#8f8f8a} .ah{fill:#8f8f8a}
+    }
+  </style>
+  <defs>
+    <marker id="h" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path class="ah" d="M0,0 L10,5 L0,10 z"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1192" height="300"/>
+
+  <rect class="local" x="12" y="10" width="984" height="280" rx="14"/>
+  <text class="z" x="28" y="280">ON YOUR MACHINE</text>
+  <rect class="ext" x="1008" y="10" width="172" height="280" rx="14"/>
+  <text class="z" x="1094" y="280" text-anchor="middle">EXTERNAL</text>
+
+  <rect class="in" x="308" y="28" width="112" height="40" rx="8"/>
+  <text class="t" x="364" y="53" text-anchor="middle">Deny-lists</text>
+  <rect class="in" x="446" y="28" width="250" height="40" rx="8"/>
+  <text class="t" x="571" y="53" text-anchor="middle">Ontology</text>
+  <path class="a" d="M364,68 V118" marker-end="url(#h)"/>
+  <path class="a" d="M502,68 V118" marker-end="url(#h)"/>
+  <path class="a" d="M640,68 V118" marker-end="url(#h)"/>
+
+  <rect class="box" x="36" y="120" width="104" height="60" rx="10"/>
+  <text class="t" x="88" y="146" text-anchor="middle">Tickets</text>
+  <text class="s" x="88" y="164" text-anchor="middle">CSV · JSON</text>
+  <rect class="box" x="174" y="120" width="104" height="60" rx="10"/>
+  <text class="t" x="226" y="155" text-anchor="middle">Normalize</text>
+  <rect class="box" x="312" y="120" width="104" height="60" rx="10"/>
+  <text class="t" x="364" y="146" text-anchor="middle">Detect</text>
+  <text class="s" x="364" y="164" text-anchor="middle">Presidio</text>
+  <rect class="box" x="450" y="120" width="104" height="60" rx="10"/>
+  <text class="t" x="502" y="146" text-anchor="middle">Determine</text>
+  <text class="t" x="502" y="164" text-anchor="middle">masking</text>
+  <rect class="key" x="588" y="120" width="104" height="60" rx="10"/>
+  <text class="t" x="640" y="155" text-anchor="middle">Mask</text>
+  <rect class="box" x="726" y="120" width="104" height="60" rx="10"/>
+  <text class="t" x="778" y="146" text-anchor="middle">Local model</text>
+  <text class="s" x="778" y="164" text-anchor="middle">Ollama</text>
+  <rect class="box" x="864" y="120" width="104" height="60" rx="10"/>
+  <text class="t" x="916" y="146" text-anchor="middle">Masked data</text>
+  <text class="s" x="916" y="164" text-anchor="middle">&lt;CONTACT_1&gt;</text>
+  <rect class="box" x="1026" y="120" width="136" height="60" rx="10"/>
+  <text class="t" x="1094" y="140" text-anchor="middle">Closed-source</text>
+  <text class="t" x="1094" y="158" text-anchor="middle">model</text>
+  <text class="s" x="1094" y="174" text-anchor="middle">Claude · ChatGPT</text>
+
+  <path class="a" d="M140,150 H172" marker-end="url(#h)"/>
+  <path class="a" d="M278,150 H310" marker-end="url(#h)"/>
+  <path class="a" d="M416,150 H448" marker-end="url(#h)"/>
+  <path class="a" d="M554,150 H586" marker-end="url(#h)"/>
+  <path class="a" d="M692,150 H724" marker-end="url(#h)"/>
+  <path class="a" d="M830,150 H862" marker-end="url(#h)"/>
+  <path class="a" d="M968,150 H1024" marker-end="url(#h)"/>
+
+  <path class="a" d="M640,180 V214" marker-end="url(#h)"/>
+  <rect class="in" x="580" y="216" width="120" height="44" rx="8"/>
+  <text class="t" x="640" y="236" text-anchor="middle">Vault</text>
+  <text class="s" x="640" y="252" text-anchor="middle">encrypted · audit</text>
+</svg>
