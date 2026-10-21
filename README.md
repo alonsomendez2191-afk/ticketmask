@@ -78,7 +78,7 @@ of 4096 silently cuts long tickets).
 Treat the output as a draft that code must check before anyone uses it. In tests
 on the sample tickets with `gemma4:e4b-it-qat`, a 4B model, the model caught a
 lone first name, a name in a data row and a username in a file path. It missed
-a street address and an API key, and sometimes renumbered placeholders the
+a street address and sometimes renumbered placeholders the
 first pass had already set. Before using a report, confirm that every
 placeholder from the input survived unchanged and that no original value
 appears in it. A larger model will do better.
